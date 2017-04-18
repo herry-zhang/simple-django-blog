@@ -167,6 +167,6 @@ Desktop.ini
 # django migrations
 blog/migrations/
 !blog/migrations/__init__.py
-blog.sqlite3
+db.sqlite3
 /.idea/
 blog/static/images/
