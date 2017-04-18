@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% block main %}
+<div class="container">
+    <div class="jumbotron alert-dismissable text-center">
+    <p>Oops...</p>
+        {% if form_errors %}
+            <p>{{ form_errors }}</p>
+        {% else %}
+            <p>Page can't found!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

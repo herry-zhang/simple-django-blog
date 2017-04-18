@@ -1,0 +1,34 @@
+{% extends 'blog/base.html' %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>{{ article.title }}</h2>
+                <p>{{ arttcle.author }}</p>
+                <p class="text-area">{{ article.writings }}</p>
+            </div>
+            <div class="fixed col-md-4">
+                {% if user.is_authenticated %}
+                    <ul class="list-inline list-unstyled">
+                        <li class="col-md-offset-4"><a class="btn btn-info" href="{% url 'add_page' %}">添加页面</a></li>
+                        <li><a class="btn btn-info" href="{% url 'add_article' %}">写新文章</a></li>
+                    </ul>
+                    <br />
+                    <br />
+                    <br />
+                    <h4 class="col-md-offset-4">最受欢迎的文章</h4>
+                    <ul class="list">
+                        {% for mostviews in articles %}
+                            <li class="col-md-offset-4">
+                                <a href="">{{ mostviews.title }}</a>
+                            </li>
+                        {% empty %}
+                            <li>暂时没有文章。</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

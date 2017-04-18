@@ -1,0 +1,69 @@
+{% extends "blog/base.html" %}
+{% load humanize %}
+{% load static %}
+{% load blog_extras %}
+{% block main %}
+    <div class="container">
+        <div>
+            <div class="row">
+                {% if user.is_authenticated %}
+                    <ul class="list-inline list-unstyled">
+                        <li class="col-md-offset-10"><a class="btn btn-info" href="{% url 'add_page' %}">添加页面</a>
+                        </li>
+                        <li><a class="btn btn-info" href="{% url 'add_article' %}">写新文章</a></li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-md-5 ">
+                    <h4>最受欢迎的收集</h4>
+                    <ol>
+                        {% for page in pages %}
+                            <li>
+                                <header><a href="{{ page.url }}">{{ page.title }}</a></header>
+                            </li>
+                            <footer>
+                                <a href="{{ page.url }}">{{ page.url }}</a>
+                                <time class="post-date" datetime="{{ page.collect_date }}">
+                                    | {{ page.collect_date|naturaltime }}</time>
+                            </footer>
+                            <li class="list-unstyled">
+                                {{ page.description }}
+                                <a class="read-more" href="{{ page.url }}">&raquo;</a>
+                            </li>
+                        {% empty %}
+                            <li class="list-unstyled">There are no page present.</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+
+                <div class="col-md-5 col-md-offset-2">
+                    <h4>最受欢迎的页面</h4>
+                    {% if articles %}
+                        <ol>
+                            {% for article in articles %}
+                                <li><a href="{% url 'article' article.slug %}">{{ article.title }}</a></li>
+                                <footer>
+                                    <a href="{{ article.author }}">{{ article.author }}</a>
+                                    <time datetime="{{ article.create_date }}">
+                                        | {{ article.create_date|naturaltime }}创建
+                                    </time>
+                                </footer>
+                                <li class="list-unstyled">
+                                    {{ article.writings|summary }}
+                                    <a class="read-more"
+                                       href="{% url 'article' article.slug %}">&raquo;</a>
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    {% else %}
+                        <li class="list-unstyled">There are no article present.</li>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

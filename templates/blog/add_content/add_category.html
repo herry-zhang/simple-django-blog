@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+
+{% block main %}
+    <div class="container ">
+        <h3 class="form-group-heading center-block text-center">增加一个分类</h3>
+            <form class="max-width-40" method="POST" action="{% url 'add_category' %}">
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+
+                    {{ hidden }}
+
+                {% endfor %}
+                {% if form.errors %}
+                    <p class="form-group alert-info">账户或密码错误</p>
+                {% endif %}
+                {% for field in form.visible_fields %}
+                    <div class="form-group">
+                        <label></label>
+                        <input type="text" name="{{ field.name }}" value="" class="form-control"
+                               placeholder="{{ field.help_text }}"
+                               required>
+                    </div>
+                    <button class="btn btn-default btn-block" type="submit">添加</button>
+                {% endfor %}
+            </form>
+    </div> <!-- /container -->
+
+{% endblock %}

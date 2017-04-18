@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'blog/css/base.css' %}" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    {% block css %}{% endblock %}
+    <title>Willtunner{% block title %}{% endblock %}</title>
+</head>
+<body>
+<header>
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'index' %}"
+                   target="_blank">Willtunner</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'all_pages' %}">Page</a></li>
+                    <li><a href="{% url 'all_articles' %}">Article</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li><a href="">{{ user.username }}</a></li>
+                        <li><a href="{% url 'logout' %}">登出</a></li>
+                    {% endif %}
+                    <li>
+                        <form class="navbar-form" action="{% url 'search' %}"
+                              method="GET" role="search">
+                            <div class="input-group">
+                                <input name="search" type="text"
+                                       class="form-control" placeholder="搜索收集/文章"/>
+                                <span class="input-group-btn">
+                                <button type="submit"
+                                        class="btn btn-default">搜索</button>
+                            </span>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<main class="main">{% block main %}{% endblock %}</main>
+<footer class="footer">
+    <div class="container">
+        <div class="row footer-top">
+            <div class="col-sm-6 col-lg-6">
+                <h4>
+                    Willtunner
+                </h4>
+                <p>
+                    <strong>人人为我，我为人人!</strong>
+                </p>
+                <p>本网站后端使用<a href="http://www.djangoprogects.org"
+                             target="_blank">Django</a>，前端基于<a
+                        href="http://www.bootstrap.org" target="_blank">
+                    Bootstrap</a>开发，感谢开源社区的贡献!
+            </div>
+            <div class="col-sm-6  col-lg-5 col-lg-offset-1">
+                <div class="row about">
+                    <div class="col-xs-4">
+                        <h6>关于</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="{% url 'about' %}"
+                                   target="_blank">关于我们</a></li>
+                            <li><a href="" target="_blank">广告合作</a></li>
+                            <li><a href="" target="_blank">友情链接</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4">
+                        <h6>联系方式</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="" target="_blank">Github</a></li>
+                            <li><a href="" target="_blank">新浪微博</a></li>
+                            <li><a href="" target="_blank">电子邮件</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4">
+                        <h6>赞助商</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="" target="_blank">haha</a></li>
+                            <li><a href="" target="_blank">haha</a></li>
+                            <li><a href="" target="_blank">haha</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row footer-bottom">
+            <ul class="list-inline text-center">
+                <li><a href="#" target="_blank">京ICP备 备号放这里</a></li>
+                <li>京公网安备 备号 放这里</li>
+            </ul>
+        </div>
+    </div>
+</footer>
+{% block js %}{% endblock %}
+</body>
+</html>

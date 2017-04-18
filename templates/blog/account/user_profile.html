@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+{% block main %}
+    {% if user.is_authenticated %}
+        <div class="container jumbotron">
+            <div class="row">
+                <div class="col-md-4 text-primary">
+                    <img class="thumbnail center-block" src="{{ profile.photo.url }}" width="200"
+                         height="200" align="{{ profile.photo.url }}">
+                    <div><a class="btn btn-block btn-default max-width-60" href="#">修改用户配置</a></div>
+                    <p></p>
+                    <div class="row panel panel-default center-block max-width-60">
+                        <div class="panel-body">用户名:{{ user.username }}</div>
+                        <div class="panel-body">邮箱:{{ user.email }}</div>
+                        <div class="panel-body">昵称:{{ profile.nickname }}</div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <p>你好，{{ profile.nickname }}。你已发布？篇文章。</p>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <a class="text-center text-info" href="{% url 'login' %}">您还没有注册，点击此处注册。</a>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+
+{% block main %}
+    {% if user.is_authenticated %}
+        <div class="container jumbotron">
+            <div class="row">
+                <div class="col-md-4">
+                    <form id="user_form" method="POST" action="{% url 'user_profile' %}"
+                          enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {% if user.picture %}
+                                <label>头像:{{ user.picture }}</label>
+                            {% else %}
+                                <label>头像:无</label>
+                                <img class="thumbnail" src="http://127.0.0.1:8000/media/{{ pic }}" width="200"
+                                     height="200">
+                            {% endif %}
+                            <input type="file" placeholder="更换头像">
+                        </div>
+                        <div class="form-group">
+                            <label>用户名:{{ user.username }}</label>
+                            <input type="" name="username" value="" class="form-control"
+                                   placeholder="{{ user.username }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>密码:******</label>
+                            <input type="password" name="password" value="" class="form-control"
+                                   placeholder="更换密码"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label>邮箱:{{ user.email }}</label>
+                            <input type="email" name="email" value="" class="form-control"
+                                   placeholder="更换邮箱" required>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">保存</button>
+                    </form>
+                </div>
+                <div class="col-md-8">
+                    <p>此处放文章</p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

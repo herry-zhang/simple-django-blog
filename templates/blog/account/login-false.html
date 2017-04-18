@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="alert-warning text-center">
+            <p>用户名或密码错误！</p>
+            <p>点击<a href="{% url 'login' %}">此处</a>重新登陆。 </p>
+        </div>
+    </div> <!-- /container -->
+{% endblock %}

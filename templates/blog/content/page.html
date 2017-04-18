@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+{% load humanize %}
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div>
+                <div>
+                    <ul class="list-inline">
+                        <li><a class="btn btn-default" href="{% url 'all_pages' %}">所有分类</a></li>
+                        <li class="divider"></li>
+                        {% for category in categories %}
+                            <li><a class="btn btn-default"
+                                   href="">{{ category.name }}</a>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+                <div class="row">
+                    {% if user.is_authenticated %}
+                        <ul class="list-inline list-unstyled">
+                            <li class="col-md-offset-10 btn"><a class="btn btn-info"
+                                                                href="{% url 'add_page' %}">添加页面</a></li>
+                            <li><a class="btn btn-info" href="{% url 'add_article' %}">写新文章</a></li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div>
+                <article>
+                    {% for page in pages %}
+                        <header>
+                            <h3><a href="{{ page.url }}">{{ page.title }}</a></h3>
+                        </header>
+                        <footer>
+                            <a href="{{ page.url }}">{{ page.url }}</a>
+                            <time class="post-date" datetime="{{ page.collect_date }}">
+                                | {{ page.collect_date|naturaltime }}收集
+                            </time>
+                        </footer>
+                        <p>
+                            <small>{{ page.description }}
+                                <a class="read-more" href="{{ page.url }}">&raquo;</a>
+                            </small>
+                        </p>
+                    {% empty %}
+                    {% endfor %}
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock %}
