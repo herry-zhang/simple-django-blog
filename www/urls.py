@@ -9,6 +9,7 @@ from www.views import *
 urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^search/', include('haystack.urls')),
+    url(r'^logout/$', logout, name='logout')
 ]
 
 urlpatterns += [
