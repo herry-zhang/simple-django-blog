@@ -1,11 +1,11 @@
 **安装依赖:**
 
->pip install -r requirements.txt
+>pip3 install -r requirements.txt
 
 **初始化**
 
  >python manage.py makemigrations
-
+ >
  >python manage.py migrate
 
  **增加超级用户**

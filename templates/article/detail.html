@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load mk %}
+{% block title %}{{ article.title }}{% endblock %}
+{% block main %}
+    <div class="container">
+        <h1 class="blog-title">{{ article.title }}</h1>
+        <p class="blog-post-meta">
+            Date:{{ article.date_time | date:"Y-m-d" }}<strong> | </strong>By:{{ article.author }}
+            <strong> | </strong>Tag:<a
+                href="">{{ article.category }}</a>
+        </p>
+        <div>{{ article.content|safe|mk }}</div>
+    </div>
+{% endblock %}

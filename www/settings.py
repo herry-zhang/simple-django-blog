@@ -3,11 +3,9 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'solxs6+q^#s_)&2q*zzt(d2322b5ac!08n*&mo)a9kn*0zyv81'
+with open(os.path.join(BASE_DIR, 'SECRET_KEY'), 'r') as key:
+    SECRET_KEY = key.read()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -15,11 +13,10 @@ if not DEBUG:
     SESSION_COOKIE_HTTPONLY = True
     TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'willtunner.me', 'www.willtunner.me']
 ADMINS = [('Hanke', 'hellohanke@outlook.com'), ]
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -28,7 +25,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'blog',
+    # search plugin
+    # 'haystack'
+    # usermod apps
+    'article',
+    'collection',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -92,6 +94,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
+LANGUAGE_CODE = 'zh_hans'
 
 TIME_ZONE = 'UTC'
 
@@ -102,13 +105,24 @@ USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_PATH = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = (STATIC_PATH,)
 
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = '/account/login/'
+
+# haystack settings
+# HAYSTACK_CONNECTIONS = {
+#     'default': {
+#         'ENGINE': 'www.whoosh_cn_backend.WhooshEngine',
+#         'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+#     },
+# }
+#
+# HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

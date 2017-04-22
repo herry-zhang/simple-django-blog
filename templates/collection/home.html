@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}收集{% endblock %}
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div>
+                {% for post in post_list %}
+                    <blockquote>
+                        <div class="blog-post">
+                            <h3 class="blog-post-title"><a href="{% url "collection_detail" id=post.id %}"
+                                                           itemprop="url">{{ post.title }}</a></h3>
+                            <p class="blog-post-meta">Date:{{ post.date_time | date:"Y-m-d" }}<strong> | </strong>Tag:<a
+                                    href="">{{ post.category }}</a>
+                            </p>
+                            <p>{{ post.description }}</p>
+                    </blockquote>
+                {% endfor %}
+
+                <nav id="pagenavi">
+                    {% if post_list.has_previous %}
+                        <a href="?p={{ post_list.previous_page_number }}" class="prev">上一页</a>
+                    {% endif %}
+                    {% if first_page %}
+                        <a href="?p=1">1</a>...
+                    {% endif %}
+                    {% for page in page_num %}
+                        {% ifequal current_page page %}
+                            <span>{{ current_page }}</span>
+                        {% else %}
+                            <a href="?p={{ page }}">{{ page }}</a>
+                        {% endifequal %}
+                    {% endfor %}
+
+                    {% if lastpage %}
+                        ...<a href="?p={{ last_page }}">{{ last_page }}</a>
+                    {% endif %}
+                    {% if post_list.has_next %}
+                        <a href="?p={{ post_list.next_page_number }}" class="next">下一页</a>
+                    {% endif %}
+                </nav>
+            </div>
+        </div>
+    </div>
+{% endblock %}

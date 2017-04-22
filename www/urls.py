@@ -4,13 +4,27 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
+from www.views import *
 
 urlpatterns = [
+    url(r'^$', home, name='home'),
+    # url(r'^search/', include('haystack.urls')),
+]
+
+urlpatterns += [
     url(r'^admin/', admin.site.urls),
 ]
 
 urlpatterns += [
-    url(r'', include('blog.urls')),
+    url(r'^article/', include('article.urls')),
+]
+
+urlpatterns += [
+    url(r'^collection/', include('collection.urls')),
+]
+
+urlpatterns += [
+    url(r'^api/', include('api.urls')),
 ]
 
 if settings.DEBUG:

@@ -167,6 +167,13 @@ Desktop.ini
 # django migrations
 blog/migrations/
 !blog/migrations/__init__.py
+api/migrations/
+!api/migrations/__init__.py
+articles/migrations/
+!articles/migrations/__init__.py
+pages/migrations/
+!pages/migrations/__init__.py
 db.sqlite3
 /.idea/
 blog/static/images/
+/articles/static/tem.css
