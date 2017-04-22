@@ -12,8 +12,7 @@
                                                            itemprop="url">{{ post.title }}</a></h3>
                             <p class="blog-post-meta">
                                 Date:{{ post.date_time | date:"Y-m-d" }}<strong> | </strong>By:{{ post.author }}
-                                <strong> | </strong>Tag:<a
-                                    href="">{{ post.category }}</a>
+                                <strong> | </strong>Tag:{{ post.category }}
                             </p>
                             <p>{{ post.content | truncatechars_html:100 }}</p>
                         </div>
