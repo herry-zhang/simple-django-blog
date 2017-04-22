@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     # search plugin
-    # 'haystack'
+    'haystack',
     # usermod apps
     'article',
     'collection',
@@ -118,11 +118,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = '/account/login/'
 
 # haystack settings
-# HAYSTACK_CONNECTIONS = {
-#     'default': {
-#         'ENGINE': 'www.whoosh_cn_backend.WhooshEngine',
-#         'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
-#     },
-# }
-#
-# HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'collection.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

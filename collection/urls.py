@@ -1,6 +1,6 @@
 # _*_ coding: utf-8 _*_
 
-from django.conf.urls import url
+from django.conf.urls import url, include
 from collection.views import *
 
 urlpatterns = [

@@ -6,6 +6,6 @@ from collection.models import Collection
 def home(request):
     collections = Collection.objects.order_by('-date_time')[:5]
     articles = Article.objects.order_by('-date_time')[:5]
-    context = {'collections': collections, 'articles': articles}
+    context = {'collections': collections, 'article': articles}
     return render(request, 'www/home.html', context)
 
