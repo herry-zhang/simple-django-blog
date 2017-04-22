@@ -6,9 +6,9 @@ from collection.models import Collection
 
 
 def home(request):
-    collections = Collection.objects.order_by('-date_time')[:5]
-    articles = Article.objects.order_by('-date_time')[:5]
-    context = {'collections': collections, 'article': articles}
+    collections = Collection.objects.all().order_by('-date_time')[:5]
+    articles = Article.objects.all().order_by('-date_time')[:5]
+    context = {'collections': collections, 'articles': articles}
     return render(request, 'www/home.html', context)
 
 @login_required()
