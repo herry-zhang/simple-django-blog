@@ -4,7 +4,7 @@ from .models import Collection
 
 
 def home(request):
-    posts = Collection.objects.all().order_by("-date_time")
+    posts = Collection.objects.all().order_by("-date_time")[::-1]
     _dict = get_page(request, posts, 5)
     return render(request, 'collection/home.html', _dict)
 
