@@ -10,7 +10,7 @@ CONFIG = Config(
     HOST="127.0.0.1",
     PORT="8001",
     SESSION_STORAGE=True,
-    APP_ID=None,
-    APP_SECRET=None,
+    APP_ID="wx12503c484beb2208",
+    APP_SECRET="cb6a4369b548201aae21964eba758f0e",
     ENCODING_AES_KEY=EncodingAESKey,
 )
