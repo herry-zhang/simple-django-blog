@@ -8,7 +8,6 @@ from www.views import *
 
 urlpatterns = [
     url(r'^$', home, name='home'),
-    url(r'^search/', include('haystack.urls')),
     url(r'^logout/$', logout, name='logout')
 ]
 
@@ -17,15 +16,11 @@ urlpatterns += [
 ]
 
 urlpatterns += [
+    url(r'^search/', include('haystack.urls')),
     url(r'^article/', include('article.urls')),
-]
-
-urlpatterns += [
     url(r'^collection/', include('collection.urls')),
-]
-
-urlpatterns += [
     url(r'^api/', include('api.urls')),
+    url(r'^wx', include('wx.urls')),
 ]
 
 if settings.DEBUG:

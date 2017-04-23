@@ -14,7 +14,7 @@ if not DEBUG:
     TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'willtunner.me', 'www.willtunner.me']
-ADMINS = [('Hanke', 'hellohanke@outlook.com'), ]
+ADMINS = []
 
 # Application definition
 INSTALLED_APPS = [
@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'article',
     'collection',
     'api',
+    'wx',
 ]
 
 MIDDLEWARE = [

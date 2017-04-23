@@ -165,15 +165,8 @@ ehthumbs.db
 Desktop.ini
 
 # django migrations
-blog/migrations/
-!blog/migrations/__init__.py
-api/migrations/
-!api/migrations/__init__.py
-article/static/article/migrations/
-!article/static/article/migrations/__init__.py
-collection/static/collection/migrations/
-!collection/static/collection/migrations/__init__.py
+*/migrations/*
+!*/migrations/__init__.py
 db.sqlite3
-/.idea/
 whoosh_index
 SECRET_KEY
