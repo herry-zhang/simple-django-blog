@@ -6,12 +6,11 @@ from collection.models import Collection
 
 
 def home(request):
-    collections = Collection.objects.all().order_by('-date_time')[::-1]
-    collections = collections[:5]
-    articles = Article.objects.all().order_by('-date_time')[::-1]
-    articles = articles[:5]
+    collections = Collection.objects.all().order_by('-date_time')[:5]
+    articles = Article.objects.all().order_by('-date_time')[:5]
     context = {'collections': collections, 'articles': articles}
     return render(request, 'www/home.html', context)
+
 
 @login_required()
 def logout(request):
