@@ -1,7 +1,7 @@
 from  werobot import WeRoBot
-from wx.wx_config import TOKEN
+from wx.wx_config import TOKEN, CONFIG
 
-robot = WeRoBot(token=TOKEN)
+robot = WeRoBot(config=CONFIG, token=TOKEN)
 
 
 @robot.handler
