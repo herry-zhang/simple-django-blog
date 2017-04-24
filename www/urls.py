@@ -19,8 +19,6 @@ urlpatterns += [
     url(r'^search/', include('haystack.urls')),
     url(r'^article/', include('article.urls')),
     url(r'^collection/', include('collection.urls')),
-    url(r'^api/', include('api.urls')),
-    url(r'^wx/', include('wx.urls')),
 ]
 
 if settings.DEBUG:
