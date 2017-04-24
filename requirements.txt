@@ -4,3 +4,5 @@ jieba==0.38
 mistune==0.7.4
 pytz==2017.2
 Whoosh==2.7.4
+werobot==1.1.1
+cryptography==1.8.1
