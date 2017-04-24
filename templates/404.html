@@ -1,14 +1,31 @@
 {% extends 'base.html' %}
+{% block head %}
+    <script type="text/javascript">
+        function countDown(secs, surl) {
+            //alert(surl);
+            var jumpTo = document.getElementById('jumpTo');
+            jumpTo.innerHTML = secs;
+            if (--secs > 0) {
+                setTimeout("countDown(" + secs + ",'" + surl + "')", 1000);
+            }
+            else {
+                location.href = surl;
+            }
+        }
+    </script>
+{% endblock %}
 {% block title %}错误{% endblock %}
 {% block main %}
     <div class="container">
         <div class="alert-dismissable text-center">
-            <p>Oops...</p>
+            <h1>Oops...</h1>
             {% if form_errors %}
                 <p>{{ form_errors }}</p>
             {% else %}
-                <p>无法找到你要打开的网页!</p>
-                <p><a href="{% url 'home' %}">点击此处返回首页。</a></p>
+                <h1>无法找到你要打开的网页!</h1>
+                <h2><span id="jumpTo">5</span>秒后跳转回首页！</h2>
+                <script type="text/javascript">countDown(5, '{% url 'home' %}');</script>
+                <h2><a href="{% url 'home' %}">点击此处立刻返回首页！</a></h2>
             {% endif %}
         </div>
     </div>

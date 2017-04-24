@@ -13,7 +13,7 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="{% static 'blog.css' %}">
-    {% block css %}{% endblock %}
+    {% block head %}{% endblock %}
     <title>{% block title %}{% endblock %} -Willtunner</title>
 </head>
 <body>
@@ -66,6 +66,6 @@
         </div>
     </div>
 </footer>
-{% block js %}{% endblock %}
 </body>
+{% block foot %}{% endblock %}
 </html>
