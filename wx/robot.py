@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import Http404
 from  werobot import WeRoBot
 from wx.wx_config import ENCODING_AES_KEY, TOKEN, APP_ID, APP_SECRET, SESSION_STORAGE
@@ -11,9 +12,17 @@ robot = WeRoBot(
 )
 
 
-@robot.handler
-def hello(message):
-    return 'Hello World!'
+@robot.subscribe
+def subscribe(message):
+    return '欢迎关注，回复“博客”或者“1”打开博客'
+
+
+@robot.filter(re.compile("^((博客)|1)$"))
+def blog(session):
+    if "ask_blog_times" in session:
+        session['ask_blog_times'] += 1
+    session["ask_blog_times"] = 1
+    return "http://www.willtunner.me"
 
 
 @robot.error_page
