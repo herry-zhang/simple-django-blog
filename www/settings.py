@@ -30,7 +30,6 @@ INSTALLED_APPS = [
     # usermod apps
     'article',
     'collection',
-    'wx',
 ]
 
 MIDDLEWARE = [
