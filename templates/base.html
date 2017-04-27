@@ -1,87 +1,83 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Willtunner的技术博客">
-    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://www.willtunner.me/static/base.css">
-    <link rel="stylesheet" href="http://www.willtunner.me/static/blog.css">
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-98191476-1', 'auto');
-        ga('send', 'pageview');
-
-    </script>
-    {% block head %}{% endblock %}
-    <title>{% block title %}{% endblock %} -Willtunner</title>
-</head>
-<body>
-<div class="wrapper">
-    <header>
-        <div class="navbar navbar-default">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/">Willtunner</a>
-                </div>
-                <div class="navbar-collapse collapse" id="navbar">
-                    <ul class="nav navbar-nav">
-                        <li><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                        <li><a class="nav-link" href="{% url 'article' %}">Article</a></li>
-                        <li><a class="nav-link" href="{% url 'collection' %}">Collection</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        {% if user.is_authenticated %}
-                            <li><a class="nav-link" href="/admin"><span
-                                    class="glyphicon glyphicon-user"></span>{{ user.username }}</a>
+{% spaceless %}
+    <!DOCTYPE html>
+    {% load static %}
+    <html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Willtunner的技术博客">
+        <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="http://www.willtunner.me/static/base.css">
+        <link rel="stylesheet" href="http://www.willtunner.me/static/blog.css">
+        <script>(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create","UA-98191476-1","auto");ga("send","pageview");</script>
+        {% block head %}{% endblock %}
+        <title>{% block title %}{% endblock %} -Willtunner</title>
+    </head>
+    <body>
+    <div class="wrapper">
+        <header>
+            <div class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">Willtunner</a>
+                    </div>
+                    <div class="navbar-collapse collapse" id="navbar">
+                        <ul class="nav navbar-nav">
+                            <li><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                            <li><a class="nav-link" href="{% url 'article' %}">Article</a></li>
+                            <li><a class="nav-link" href="{% url 'collection' %}">Collection</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if user.is_authenticated %}
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="/admin">{{ user.username }}的账号
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/admin/article/article/add"> 撰写文章</a></li>
+                                        <li><a href="/admin/collection/collection/add"> 添加收藏</a></li>
+                                        <li><a href="{% url 'logout' %}"> 账号退出</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="/admin"> 后台管理</a></li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            <li>
+                                <form id="searchform" method="get" class="navbar-form navbar-right" action="{% url 'haystack_search' %}" role="search">
+                                    <label for="navbar-search" class="sr-only">Search:</label>
+                                    <div class="form-group has-feedback has-feedback-left">
+                                <span class="form-control-feedback"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="q" id="navbar-search" value="" placeholder="Search"/>
+                                    </div>
+                                </form>
                             </li>
-                            <li><a class="nav-link" href="{% url 'logout' %}"><span
-                                    class="glyphicon glyphicon-log-out"></span>登出</a></li>
-                        {% endif %}
-                        <li>
-                            <form id="searchform" method="get" class="navbar-form navbar-right"
-                                  action="{% url 'haystack_search' %}" role="search">
-                                <label for="navbar-search" class="sr-only">Search:</label>
-                                <div class="form-group has-feedback has-feedback-left">
-                                <span class="form-control-feedback"><i class="fa fa-search"
-                                                                       aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="q" id="navbar-search" value=""
-                                           placeholder="Search"/>
-                                </div>
-                            </form>
-                        </li>
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
-    <main class="main">{% block main %}{% endblock %}</main>
-</div>
-<footer class="footer">
-    <div class="footer text-center">
-        <ul class="list-inline">
-            <li><a href="http://weibo.com/thisiskevinathere" target="_blank">微博</a></li>
-            <li><a href="https://www.zhihu.com/people/hellohanke/activities" target="_blank">知乎</a></li>
-            <li><a href="https://github.com/Willtuner" target="_blank">GitHub</a></li>
-            <li><a href="mailto:hanke.amadeus@gmail.com" target="_blank">电子邮件</a></li>
-        </ul>
-        <p>Copyright © 2017, Willtunner , All Rights Reserved</p>
+        </header>
+        <main class="main">{% block main %}{% endblock %}</main>
     </div>
-</footer>
-</body>
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-{% block foot %}{% endblock %}
-</html>
+    <footer class="footer">
+        <div class="footer text-center">
+            <ul class="list-inline">
+                <li><a href="http://weibo.com/thisiskevinathere" target="_blank">微博</a></li>
+                <li><a href="https://www.zhihu.com/people/hellohanke/activities" target="_blank">知乎</a></li>
+                <li><a href="https://github.com/Willtuner" target="_blank">GitHub</a></li>
+                <li><a href="mailto:hanke.amadeus@gmail.com" target="_blank">电子邮件</a></li>
+            </ul>
+            <p>Copyright © 2017, Willtunner , All Rights Reserved</p>
+        </div>
+    </footer>
+    </body>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% block foot %}{% endblock %}
+    </html>
+{% endspaceless %}
