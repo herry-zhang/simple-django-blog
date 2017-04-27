@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load humanize %}
+{% load mk %}
 {% block title %}文章{% endblock %}
 {% block main %}
     <div class="container">
@@ -14,7 +14,7 @@
                                 Date:{{ post.date_time | date:"Y-m-d" }}<strong> | </strong>By:{{ post.author }}
                                 <strong> | </strong>Tag:{{ post.category }}
                             </p>
-                            <p>{{ post.content | truncatechars_html:100 }}</p>
+                            <p>{{ post.content | mk | truncatechars_html:100 }}</p>
                         </div>
                     </blockquote>
                 {% endfor %}
