@@ -37,8 +37,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             {% if user.is_authenticated %}
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="/admin">{{ user.username }}的账号
-                                        <span class="caret"></span></a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="/admin">{{ user.username }}的账号 <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="/admin/article/article/add"> 撰写文章</a></li>
                                         <li><a href="/admin/collection/collection/add"> 添加收藏</a></li>
@@ -52,7 +51,7 @@
                                 <form id="searchform" method="get" class="navbar-form navbar-right" action="{% url 'haystack_search' %}" role="search">
                                     <label for="navbar-search" class="sr-only">Search:</label>
                                     <div class="form-group has-feedback has-feedback-left">
-                                <span class="form-control-feedback"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                        <span class="form-control-feedback"><i class="fa fa-search" aria-hidden="true"></i></span>
                                         <input type="text" class="form-control" name="q" id="navbar-search" value="" placeholder="Search"/>
                                     </div>
                                 </form>
