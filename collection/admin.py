@@ -8,6 +8,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class CollectionAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'views', 'date_time')
+    search_fields = ('title',)
 
 
 admin.site.register(Collection, CollectionAdmin)
