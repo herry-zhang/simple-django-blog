@@ -1,5 +1,14 @@
 from django.contrib import admin
-from .models import Article, Category
+from article.models import Article, Category
 
-admin.site.register(Article)
-admin.site.register(Category)
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'views')
+
+
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'views', 'date_time')
+
+
+admin.site.register(Article, ArticleAdmin)
+admin.site.register(Category, CategoryAdmin)
