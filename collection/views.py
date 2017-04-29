@@ -5,12 +5,12 @@ from collection.models import Collection, Category
 
 
 def home(request):
-    posts = Collection.objects.all().order_by("-date_time")
+    posts = Collection.objects.all().order_by("-pub_time")
     _dict = get_page(request, posts, 5)
     return render(request, 'collection/home.html', _dict)
 
 
-def detail(request, id):
+def detail(request, pk):
     reset = False
     visited = request.session.get('visited')
     cid = request.session.get('cid')
@@ -18,13 +18,14 @@ def detail(request, id):
     if visited and cid:
         last_visit_time = datetime.strptime(visited[:-7],
                                             '%Y-%m-%d %H:%M:%S')
-        if (datetime.now() - last_visit_time).seconds > 1800 and cid == id:  # half hour
+        if (datetime.now() - last_visit_time).seconds > 1800 and cid == pk:  #
+            #  half hour
             reset = True
 
     else:
         reset = True
     try:
-        collection = Collection.objects.get(id=id)
+        collection = Collection.objects.get(id=pk)
         if reset:
             category = collection.category.name
             category = Category.objects.get(name=category)
@@ -33,7 +34,7 @@ def detail(request, id):
             collection.views += 1
             collection.save()
             request.session["visited"] = str(datetime.now())
-            request.session['aid'] = id
+            request.session['cid'] = pk
         return redirect(collection.url)
     except Collection.DoesNotExist or Category.DoesNotExist:
         raise Http404

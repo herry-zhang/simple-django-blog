@@ -5,9 +5,10 @@
     <div class="container">
         <h1 class="blog-title">{{ article.title }}</h1>
         <p class="blog-post-meta">
-            Date:{{ article.date_time | date:"Y-m-d" }}<strong> | </strong>By:{{ article.author }}
+            Date:{{ article.pub_time | date:"Y-m-d" }}<strong> | </strong>By
+            :{{ article.author }}
             <strong> | </strong>Tag:{{ article.category }}
         </p>
-        <div>{{ article.content|safe|mk }}</div>
+        <div>{{ article.content|mk }}</div>
     </div>
 {% endblock %}

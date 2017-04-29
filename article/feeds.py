@@ -10,7 +10,7 @@ class LatestArticleFeed(Feed):
     description = 'New posts of my blog.'
 
     def items(self):
-        return Article.objects.order_by("-date_time")[:5]
+        return Article.objects.order_by("-pub_time")[:5]
 
     def item_title(self, item):
         return item.title
@@ -19,4 +19,4 @@ class LatestArticleFeed(Feed):
         return truncatewords(item.content, 30)
 
     def item_link(self, item):
-        return reverse("article_detail", kwargs={"id": item.id})
+        return reverse("article_detail", kwargs={"pk": item.id})

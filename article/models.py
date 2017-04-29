@@ -22,7 +22,7 @@ class Article(models.Model):
     author = models.ForeignKey(User, verbose_name='作者')
     category = models.ForeignKey(Category)
     views = models.IntegerField(default=0, verbose_name='浏览次数')
-    date_time = models.DateField(auto_now_add=True, verbose_name='创建时间')
+    pub_time = models.DateField(auto_now_add=True, verbose_name='发布时间')
     content = models.TextField(blank=True, null=True, verbose_name='内容')
 
     def __str__(self):
@@ -32,6 +32,6 @@ class Article(models.Model):
         return reverse('detail', kwargs={'id': self.id})
 
     class Meta:
-        ordering = ['-date_time']
+        ordering = ['-pub_time']
         verbose_name = '文章'
         verbose_name_plural = '文章'

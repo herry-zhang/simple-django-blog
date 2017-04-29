@@ -8,10 +8,10 @@
             {% for article in articles %}
                 <ul>
                     <li>
-                        <time datetime="{{ article.date_time }}">
-                            <small>{{ article.date_time | date:"Y-m-d" }}</small>
+                        <time datetime="{{ article.pub_time }}">
+                            <small>{{ article.pub_time | date:"Y-m-d" }}</small>
                         </time>
-                        <a href="{% url 'article_detail' id=article.id %}"><b>{{ article.title }}</b></a></li>
+                        <a href="{% url 'article_detail' pk=article.id %}"><b>{{ article.title }}</b></a></li>
                 </ul>
             {% empty %}
                 <p>暂时没有文章更新。</p>
@@ -22,8 +22,8 @@
             {% for collection in collections %}
                 <ul>
                     <li>
-                        <time class="post-date" datetime="">
-                            <small>{{ collection.date_time|date:"Y-m-d" }}</small>
+                        <time class="post-date" datetime="{{ collection.pub_time }}">
+                            <small>{{ collection.pub_time|date:"Y-m-d" }}</small>
                         </time>
                         <a href={{ collection.url }}><strong>{{ collection.title }}</strong></a>
                     </li>

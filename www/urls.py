@@ -8,14 +8,8 @@ from www.views import *
 
 urlpatterns = [
     url(r'^$', home, name='home'),
-    url(r'^logout/$', logout, name='logout')
-]
-
-urlpatterns += [
+    url(r'^logout/$', logout, name='logout'),
     url(r'^admin/', admin.site.urls),
-]
-
-urlpatterns += [
     url(r'^search/', include('haystack.urls')),
     url(r'^article/', include('article.urls')),
     url(r'^collection/', include('collection.urls')),

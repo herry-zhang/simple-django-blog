@@ -32,5 +32,6 @@ def get_page(request, post, count=5):
     except EmptyPage:
         post_list = paginator.paginator(_page_num)
 
-    return {'post_list': post_list, 'page_num': page_num, 'page': _page, 'first_page': first_page,
+    return {'post_list': post_list, 'page_num': page_num, 'page': _page,
+            'first_page': first_page,
             'last_page': last_page, 'current_page': _page}

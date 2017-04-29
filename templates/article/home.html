@@ -8,10 +8,9 @@
                 {% for post in post_list %}
                     <blockquote>
                         <div class="blog-post">
-                            <h3 class="blog-post-title"><a href="{% url "article_detail" id=post.id %}"
-                                                           itemprop="url">{{ post.title }}</a></h3>
+                            <h3 class="blog-post-title"><a href="{% url "article_detail" pk=post.id %}" itemprop="url">{{ post.title }}</a></h3>
                             <p class="blog-post-meta">
-                                Date:{{ post.date_time | date:"Y-m-d" }}<strong> | </strong>By:{{ post.author }}
+                                Date:{{ post.pub_time | date:"Y-m-d" }}<strong> | </strong>By:{{ post.author }}
                                 <strong> | </strong>Tag:{{ post.category }}
                             </p>
                             <p>{{ post.content | mk | truncatechars_html:100 }}</p>

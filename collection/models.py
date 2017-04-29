@@ -19,7 +19,7 @@ class Category(models.Model):
 class Collection(models.Model):
     title = models.CharField(max_length=100, verbose_name='标题')
     category = models.ForeignKey(Category)
-    date_time = models.DateField(auto_now_add=True, verbose_name='收集时间')
+    pub_time = models.DateField(auto_now_add=True, verbose_name='发布时间')
     views = models.IntegerField(default=1, verbose_name='浏览次数')
     description = models.TextField(blank=True, null=True, verbose_name='描述')
     url = models.URLField(null=True, verbose_name='网址')
@@ -31,6 +31,6 @@ class Collection(models.Model):
         return reverse(kwargs={'id': self.id})
 
     class Meta:
-        ordering = ['-date_time']
+        ordering = ['-pub_time']
         verbose_name = '收集'
         verbose_name_plural = '收集'

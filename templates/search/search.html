@@ -31,10 +31,10 @@
             {% for post in page.object_list %}
                 <blockquote>
                     <div class="blog-post">
-                        <h3 class="blog-post-title"><a href="{% url "article_detail" id=post.object.id %}"
+                        <h3 class="blog-post-title"><a href="{% url "article_detail" pk=post.object.id %}"
                                                        itemprop="url">{{ post.title }}</a></h3>
                         <p class="blog-post-meta">
-                            Date:{{ post.object.date_time | date:"Y-m-d" }}<strong> | </strong>By:{{ post.object.author }}
+                            Date:{{ post.object.pub_time | date:"Y-m-d" }}<strong> | </strong>By:{{ post.object.author }}
                             <strong> | </strong>Tag:<a
                                 href="">{{ post.object.category }}</a>
                         </p>
