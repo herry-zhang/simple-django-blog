@@ -9,6 +9,7 @@ with open(os.path.join(BASE_DIR, 'SECRET_KEY'), 'r') as key:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+
 if not DEBUG:
     SESSION_COOKIE_HTTPONLY = True
     TEMPLATE_DEBUG = False
