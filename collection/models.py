@@ -1,5 +1,6 @@
 # coding:utf-8
 from django.db import models
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
 
@@ -19,7 +20,10 @@ class Category(models.Model):
 class Collection(models.Model):
     title = models.CharField(max_length=100, verbose_name='标题')
     category = models.ForeignKey(Category)
-    pub_time = models.DateField(auto_now_add=True, verbose_name='发布时间')
+    author = models.ForeignKey(User, verbose_name='作者')
+    update_time = models.DateTimeField(verbose_name='更新时间', auto_now=True,
+                                       null=True)
+    pub_time = models.DateTimeField(auto_now_add=True, verbose_name='发布时间')
     views = models.IntegerField(default=1, verbose_name='浏览次数')
     description = models.TextField(blank=True, null=True, verbose_name='描述')
     url = models.URLField(null=True, verbose_name='网址')

@@ -22,7 +22,9 @@ class Article(models.Model):
     author = models.ForeignKey(User, verbose_name='作者')
     category = models.ForeignKey(Category)
     views = models.IntegerField(default=0, verbose_name='浏览次数')
-    pub_time = models.DateField(auto_now_add=True, verbose_name='发布时间')
+    update_time = models.DateTimeField(verbose_name='更新时间', auto_now=True,
+                                       null=True)
+    pub_time = models.DateTimeField(auto_now_add=True, verbose_name='发布时间')
     content = models.TextField(blank=True, null=True, verbose_name='内容')
 
     def __str__(self):

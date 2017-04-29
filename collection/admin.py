@@ -7,7 +7,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class CollectionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'views', 'pub_time')
+    list_display = ('title', 'category', 'views', 'pub_time', 'update_time')
     search_fields = ('title',)
 
 

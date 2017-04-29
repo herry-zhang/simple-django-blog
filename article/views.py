@@ -38,3 +38,11 @@ def detail(request, pk):
         return render(request, 'article/detail.html', {'article': article})
     except Article.DoesNotExist or Category.DoesNotExist:
         raise Http404
+
+
+def edit(request, pk):
+    try:
+        article = Article.objects.get(id=pk)
+        return render(request, 'article/edit.html', {'article': article})
+    except Article.DoesNotExist or Category.DoesNotExist:
+        raise Http404
