@@ -9,14 +9,14 @@
 {% block main %}
         {% for post in post_list %}
             <div>
-                <h3><a class="post-title" href="{{ post.get_url }}" itemprop="url"><strong>{{ post.title }}</strong></a></h3>
+                <h3><a class="post-title" href="{{ post.get_url }}">{{ post.title }}</a></h3>
                 <small class="text-muted">
                     <span class="glyphicon glyphicon-time">{{ post.pub_time | date:"Y-m-d" }}</span>
                     <span class="glyphicon glyphicon-user">{{ post.author }}</span>
                     <span class="glyphicon glyphicon-tag">{{ post.category }}</span>
                 </small>
                 <p>{{ post.description }}</p>
-                <a class="post-meta" href="{% url "article_detail" pk=post.id %}">转到原网页阅读全文&raquo;</a>
+                <a class="post-meta" href="{{ post.get_url }}">转到原网页阅读全文&raquo;</a>
             </div>
                 <hr>
         {% endfor %}

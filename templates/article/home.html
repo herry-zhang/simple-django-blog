@@ -17,7 +17,7 @@
                 <span class="glyphicon glyphicon-tag">{{ post.category }}</span>
             </small>
             <p>{{ post.content | truncatechars_html:180 }}</p>
-            <a class="post-meta" href="{% url "article_detail" pk=post.id %}">阅读全文&raquo;</a>
+            <a class="post-meta" href="{{ post.get_url }}">阅读全文&raquo;</a>
         </div>
         <hr>
     {% endfor %}
