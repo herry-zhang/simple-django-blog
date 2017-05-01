@@ -7,16 +7,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Willtunner的技术博客">
-        <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
-        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="http://www.willtunner.me/static/base.css">
-        <link rel="stylesheet" href="http://www.willtunner.me/static/blog.css">
+        <link href="{% static 'favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
+        <link href="{% static "article/css/3.3.7.css" %}" rel="stylesheet">
+        <link href="{% static "article/css/base.css" %}" rel="stylesheet">
         {% block head %}{% endblock %}
         <title>{% block title %}{% endblock %} -Willtunner</title>
     </head>
     <body>
     <div class="wrapper">
-        <header>
+        <header class="header">
             <div class="navbar navbar-default">
                 <div class="container">
                     <div class="navbar-header">
@@ -25,14 +24,17 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="/">Willtunner</a>
+                        <a class="navbar-brand" href="{% url "home" %}">Willtunner</a>
                     </div>
                     <div class="navbar-collapse collapse" id="navbar">
                         <ul class="nav navbar-nav">
-                            <li><a class="nav-link" href="{% url 'home' %}">首页</a></li>
-                            <li><a class="nav-link" href="{% url 'article' %}">文章</a></li>
-                            <li><a class="nav-link" href="{% url 'collection' %}">收集</a></li>
-                            <li><a class="nav-link" href="{% url 'feed' %}">订阅</a></li>
+                            {% block nav-link %}
+                                <li><a class="nav-link" href="{% url 'index' %}">首页</a></li>
+                                <li><a class="nav-link" href="{% url 'article' %}">文章</a></li>
+                                <li><a class="nav-link" href="{% url 'collection' %}">收集</a></li>
+                                <li><a class="nav-link" href="{% url 'feed' %}">订阅</a></li>
+                            {% endblock %}
+
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             {% if user.is_authenticated %}
@@ -61,23 +63,47 @@
                 </div>
             </div>
         </header>
-        <main class="main">{% block main %}{% endblock %}</main>
-    </div>
-    <footer class="footer">
-        <div class="footer text-center">
-            <ul class="list-inline">
-                <li><a href="http://weibo.com/thisiskevinathere" target="_blank">微博</a></li>
-                <li><a href="https://www.zhihu.com/people/hellohanke/activities" target="_blank">知乎</a></li>
-                <li><a href="https://github.com/Willtuner" target="_blank">GitHub</a></li>
-                <li><a href="mailto:hanke.amadeus@gmail.com" target="_blank">电子邮件</a></li>
-            </ul>
-            <p>Copyright © 2017, Willtunner , All Rights Reserved</p>
+        <main class="main">
+        <div class="container">
+        {% block body %}
+            <div class="nav-left">
+                {% block sidebar %}
+                {% include 'sidebar.html' %}
+                {% endblock %}
+            </div>
+            <div class="main-right">
+                {% block main %}{% endblock %}
+            </div>
         </div>
-    </footer>
+        {% endblock %}
+        </main>
+    </div>
+        <footer class="footer">
+            <div class="text-center">
+                <ul class="list-inline">
+                    <li><a href="http://weibo.com/thisiskevinathere" target="_blank">微博</a></li>
+                    <li><a href="https://www.zhihu.com/people/hellohanke/activities" target="_blank">知乎</a></li>
+                    <li><a href="https://github.com/Willtuner" target="_blank">GitHub</a></li>
+                    <li><a href="mailto:hanke.amadeus@gmail.com" target="_blank">电子邮件</a></li>
+                </ul>
+                <p>Copyright © 2017, Willtunner , All Rights Reserved</p>
+            </div>
+        </footer>
     </body>
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create","UA-98191476-1","auto");ga("send","pageview");</script>
+    <script src="{% static "article/js/j1.12.4.js" %}"></script>
+    <script src="{% static "article/js/b3.3.7.js" %}"></script>
+    <script>(function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+        a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
+    ga("create", "UA-98191476-1", "auto");
+    ga("send", "pageview");</script>
     {% block foot %}{% endblock %}
     </html>
 {% endspaceless %}

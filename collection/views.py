@@ -1,13 +1,17 @@
 from datetime import datetime
 from django.shortcuts import render, Http404, redirect
-from handle.get_page import get_page
+from utils.get_page import get_page
+from utils.get_sidebar_content import get_content
 from collection.models import Collection, Category
 
 
 def home(request):
     posts = Collection.objects.all().order_by("-pub_time")
     _dict = get_page(request, posts, 5)
-    return render(request, 'collection/home.html', _dict)
+    _ = get_content()
+    context = _dict.copy()
+    context.update(_)
+    return render(request, 'collection/home.html', context)
 
 
 def detail(request, pk):

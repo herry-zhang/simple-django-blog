@@ -1,0 +1,30 @@
+    <div>
+        <h4 class="blue">最近更新的文章</h4>
+        {% for article in articles %}
+            <ul>
+                <li>
+                    <time datetime="{{ article.pub_time }}" class="post-meta">
+                        <small>{{ article.pub_time | date:"Y-m-d" }}</small>
+                    </time>
+                    »
+                    <a class="post-title" href="{% url 'article_detail' pk=article.id %}"><b>{{ article.title }}</b></a></li>
+            </ul>
+        {% empty %}
+            <p>暂时没有文章更新。</p>
+        {% endfor %}
+    </div>
+    <div>
+        <h4>最近收藏的收集</h4>
+        {% for collection in collections %}
+            <ul>
+                <li>
+                    <time class="post-date" datetime="{{ collection.pub_time }}">
+                        <small>{{ collection.pub_time|date:"Y-m-d" }}</small>
+                    </time>
+                    <a href={{ collection.url }}><strong>{{ collection.title }}</strong></a>
+                </li>
+            </ul>
+        {% empty %}
+            <p>暂时没有收集更新。</p>
+        {% endfor %}
+    </div>

@@ -32,7 +32,7 @@ class Collection(models.Model):
         return self.title
 
     def get_url(self):
-        return reverse(kwargs={'id': self.id})
+        return reverse('collection_detail', kwargs={'pk': self.id})
 
     class Meta:
         ordering = ['-pub_time']

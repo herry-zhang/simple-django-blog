@@ -1,44 +1,59 @@
 {% extends "base.html" %}
 {% block title %}收集{% endblock %}
+{% block nav-link %}
+<li><a class="nav-link" href="{% url 'index' %}">首页</a></li>
+<li><a class="nav-link" href="{% url 'article' %}">文章</a></li>
+<li class="active"><a class="nav-link" href="{% url 'collection' %}">收集</a></li>
+<li><a class="nav-link" href="{% url 'feed' %}">订阅</a></li>
+{% endblock %}
 {% block main %}
-    <div class="container">
-        <div class="row">
+        {% for post in post_list %}
             <div>
-                {% for post in post_list %}
-                    <blockquote>
-                        <div class="blog-post">
-                            <h3 class="blog-post-title"><a href="{% url "collection_detail" pk=post.id %}"
-                                                           itemprop="url">{{ post.title }}</a></h3>
-                            <p class="blog-post-meta">Date:{{ post.pub_time | date:"Y-m-d" }}<strong>
-                                | </strong>Tag:{{ post.category }}
-                            </p>
-                            <p>{{ post.description }}</p>
-                    </blockquote>
-                {% endfor %}
-
-                <nav id="pagenavi">
-                    {% if post_list.has_previous %}
-                        <a href="?p={{ post_list.previous_page_number }}" class="prev">上一页</a>
-                    {% endif %}
-                    {% if first_page %}
-                        <a href="?p=1">1</a>...
-                    {% endif %}
-                    {% for page in page_num %}
-                        {% ifequal current_page page %}
-                            <span>{{ current_page }}</span>
-                        {% else %}
-                            <a href="?p={{ page }}">{{ page }}</a>
-                        {% endifequal %}
-                    {% endfor %}
-
-                    {% if lastpage %}
-                        ...<a href="?p={{ last_page }}">{{ last_page }}</a>
-                    {% endif %}
-                    {% if post_list.has_next %}
-                        <a href="?p={{ post_list.next_page_number }}" class="next">下一页</a>
-                    {% endif %}
-                </nav>
+                <h3><a href="{{ post.get_url }}" itemprop="url"><strong>{{ post.title }}</strong></a></h3>
+                <small class="text-muted">
+                    <span class="glyphicon glyphicon-time">{{ post.pub_time | date:"Y-m-d" }}</span>
+                    <span class="glyphicon glyphicon-user">{{ post.author }}</span>
+                    <span class="glyphicon glyphicon-tag">{{ post.category }}</span>
+                </small>
+                <p class="lead">{{ post.description }}</p>
             </div>
-        </div>
-    </div>
+                <hr>
+        {% endfor %}
+        <nav aria-label=" Page navigation">
+            <ul class="pagination">
+                {% if post_list.has_previous %}
+                    <li>
+                        <a href="?p={{ post_list.previous_page_number }}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if first_page %}
+                    <li><a href="?p=1">1</a></li>
+                    <li>...</li>
+                {% endif %}
+                {% for page in page_num %}
+                    {% ifequal current_page page %}
+                        <li class="activate"><a
+                                href="?p={{ page }}">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="?p={{ page }}">{{ page }}</a></li>
+                    {% endifequal %}
+                {% endfor %}
+                {% if post_list.has_next %}
+                    <li>
+                        <a href="?p={{ post_list.next_page_number }}""
+                        aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if lastpage %}
+                    <li>...</li>
+                    <li><a href="?p={{ last_page }}">{{ last_page }}</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
 {% endblock %}

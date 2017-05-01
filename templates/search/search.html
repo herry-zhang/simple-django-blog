@@ -1,63 +1,58 @@
 {% extends 'base.html' %}
+{% load mk %}
 {% block title %}搜索{% endblock %}
-{% block main %}
-    <div class="container">
-        <div class="max-width-40">
-            <form class="form-horizontal" action="/search" method="GET" role="search">
-                <div class="input-group">
-                    <input name="q" type="text" class="form-control" placeholder="搜索"/>
-                    <span class="input-group-btn">
-                                <button type="submit" class="btn btn-default">搜索</button>
-                            </span>
-                </div>
-                <div>
-                    <ul id="id_models" class="list-inline">
-                        <li>搜索包含：</li>
-                        <li><label for="id_models_0"><input type="checkbox" name="models"
-                                                            value="collection.collection" id="id_models_0"
-                                                            checked/>
-                            收集</label>
-                        </li>
-                        <li><label for="id_models_1"><input type="checkbox" name="models"
-                                                            value="article.article" id="id_models_1" checked/>
-                            文章</label>
-                        </li>
-                    </ul>
-                </div>
-            </form>
-        </div>
-        </br>
-        {% if query %}
-            {% for post in page.object_list %}
-                <blockquote>
-                    <div class="blog-post">
-                        <h3 class="blog-post-title"><a href="{% url "article_detail" pk=post.object.id %}"
-                                                       itemprop="url">{{ post.title }}</a></h3>
-                        <p class="blog-post-meta">
-                            Date:{{ post.object.pub_time | date:"Y-m-d" }}<strong> | </strong>By:{{ post.object.author }}
-                            <strong> | </strong>Tag:<a
-                                href="">{{ post.object.category }}</a>
-                        </p>
-                        <p>{{ post.object.content | truncatechars_html:80 }}</p>
-                        <p>{{ post.object.description | truncatechars_html:80 }}</p>
-                    </div>
-                </blockquote>
-            {% empty %}
-                <p>No results found.</p>
-            {% endfor %}
+{% block body %}
+        <form class="comment-form search-form" action="{% url 'haystack_search' %}" method="GET" role="search">
 
-            {% if page.has_previous or page.has_next %}
-                <div>
-                    {% if page.has_previous %}
-                        <a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo;
-                    Previous{% if page.has_previous %}</a>{% endif %}
-                    |
-                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}
-                    Next &raquo;{% if page.has_next %}</a>{% endif %}
-                </div>
-            {% endif %}
-        {% else %}
-            <p>请输入搜索内容...</p>
+            <ul>
+                    {{ form.as_ul }}
+            </ul>
+{#            <div class="input-group">#}
+{#                <input name="q" type="text" class="form-control" placeholder="搜索"/>#}
+{#                <span class="input-group-btn">#}
+{#                                <button type="submit" class="btn btn-default">搜索</button>#}
+{#                            </span>#}
+{#            </div>#}
+{#            <div>#}
+{#                <ul id="id_models" class="list-inline">#}
+{#                    <li>搜索包含：</li>#}
+{#                    <li><label for="id_models_0"><input type="checkbox" name="models" value="collection.collection" id="id_models_0" checked/>收集</label>#}
+{#                    </li>#}
+{#                    <li><label for="id_models_1"><input type="checkbox" name="models" value="article.article" id="id_models_1" checked/>文章</label>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </div>#}
+        </form>
+    </br>
+    {% if query %}
+        {% for post in page.object_list %}
+            <div>
+                <h3><a class="post-title" href="{{ post.object.get_url }}">{{ post.title }}</a></h3>
+                <small class="text-muted">
+                    <span class="glyphicon glyphicon-time">{{ post.object.pub_time | date:"Y-m-d" }}</span>
+                    <span class="glyphicon glyphicon-user">{{ post.object.author }}</span>
+                    <span class="glyphicon glyphicon-tag">{{ post.object.category }}</span>
+                </small>
+                <p>{{ post.content | truncatechars_html:180 }}{{ post.description }}</p>
+            </div>
+            <hr>
+        {% empty %}
+            <p>没有搜索结果，试一试Goole？</p>
+            <p>打不开Google， 试一试百度？</p>
+        {% endfor %}
+
+
+        {% if page.has_previous or page.has_next %}
+            <div>
+                {% if page.has_previous %}
+                    <a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo;
+                Previous{% if page.has_previous %}</a>{% endif %}
+                |
+                {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}
+                Next &raquo;{% if page.has_next %}</a>{% endif %}
+            </div>
         {% endif %}
-    </div>
+    {% else %}
+        <p>请输入搜索内容...</p>
+    {% endif %}
 {% endblock %}

@@ -31,7 +31,7 @@ class Article(models.Model):
         return self.title
 
     def get_url(self):
-        return reverse('detail', kwargs={'id': self.id})
+        return reverse("article_detail", kwargs={'pk': self.id})
 
     class Meta:
         ordering = ['-pub_time']

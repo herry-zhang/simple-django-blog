@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="h4" style="margin: 10px">最受欢迎的文章</div>
+    <ul>
+        {% for article in popular_articles %}
+            <li><a class="sidebar-title" href="{% url "article_detail" pk=article.id %}">{{ article.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="card">
+    <div class="h4" style="margin: 10px">最受欢迎的收集</div>
+    <ul>
+        {% for collection in popular_collections %}
+            <li><a class="sidebar-title" href="{% url "collection_detail" pk=collection.id %}">{{ collection.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}首页{% endblock %}
+{% block nav-link %}
+    <li class="active"><a class="nav-link" href="{% url 'index' %}">首页</a></li>
+    <li><a class="nav-link" href="{% url 'article' %}">文章</a></li>
+    <li><a class="nav-link" href="{% url 'collection' %}">收集</a></li>
+    <li><a class="nav-link" href="{% url 'feed' %}">订阅</a></li>
+{% endblock %}
+{% block body %}
+{% include 'www/home_body.html' %}
+{% endblock %}
+

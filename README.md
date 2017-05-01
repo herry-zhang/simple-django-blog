@@ -17,4 +17,5 @@
 
  **启用服务**
 
+ >python manage.py collectstatic
  >python manage.py runserver

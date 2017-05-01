@@ -340,7 +340,7 @@ class WhooshSearchBackend(BaseSearchBackend):
 
         if sort_by is not None:
             # Determine if we need to reverse the results and if Whoosh can
-            # handle what it's being asked to sort by. Reversing is an
+            # utils what it's being asked to sort by. Reversing is an
             # all-or-nothing action, unfortunately.
             sort_by_list = []
             reverse_counter = 0
@@ -368,13 +368,13 @@ class WhooshSearchBackend(BaseSearchBackend):
             sort_by = sort_by_list[0]
 
         if facets is not None:
-            warnings.warn("Whoosh does not handle faceting.", Warning, stacklevel=2)
+            warnings.warn("Whoosh does not utils faceting.", Warning, stacklevel=2)
 
         if date_facets is not None:
-            warnings.warn("Whoosh does not handle date faceting.", Warning, stacklevel=2)
+            warnings.warn("Whoosh does not utils date faceting.", Warning, stacklevel=2)
 
         if query_facets is not None:
-            warnings.warn("Whoosh does not handle query faceting.", Warning, stacklevel=2)
+            warnings.warn("Whoosh does not utils query faceting.", Warning, stacklevel=2)
 
         narrowed_results = None
         self.index = self.index.refresh()
@@ -750,7 +750,7 @@ class WhooshSearchBackend(BaseSearchBackend):
             # Attempt to use json to load the values.
             converted_value = json.loads(value)
 
-            # Try to handle most built-in types.
+            # Try to utils most built-in types.
             if isinstance(converted_value, (list, tuple, set, dict, six.integer_types, float, complex)):
                 return converted_value
         except:
