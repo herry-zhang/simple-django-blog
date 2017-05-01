@@ -99,4 +99,6 @@ form ul {
     background: #fff;
 }
 
-
+label {
+    display: none;
+}

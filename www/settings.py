@@ -8,7 +8,7 @@ with open(os.path.join(BASE_DIR, 'SECRET_KEY'), 'r') as key:
     SECRET_KEY = key.read()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 if not DEBUG:
     SESSION_COOKIE_HTTPONLY = True
