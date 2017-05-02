@@ -1,14 +1,16 @@
 from datetime import datetime
+from django.contrib.auth.decorators import permission_required, login_required
 from django.shortcuts import render, Http404
 from utils.get_page import get_page
-from utils.get_sidebar_content import get_content
+from utils.get_sidebar_content import get_sidebar_content
 from article.models import Article, Category
+from article.forms import ArticleForm
 
 
 def home(request):
     posts = Article.objects.all().order_by("-pub_time")
     _dict = get_page(request, posts, 5)
-    _ = get_content()
+    _ = get_sidebar_content()
     context = _dict.copy()
     context.update(_)
     return render(request, 'article/home.html', context)
@@ -30,7 +32,7 @@ def detail(request, pk):
         reset = True
     try:
         article = Article.objects.get(id=pk)
-        context = get_content()
+        context = get_sidebar_content()
         context["article"] = article
         if reset:
             category = article.category.name
@@ -44,3 +46,22 @@ def detail(request, pk):
         return render(request, 'article/detail.html', context)
     except Article.DoesNotExist or Category.DoesNotExist:
         raise Http404
+
+
+@login_required()
+@permission_required(("article.can_add",
+                      'article.can_change',
+                      'article.can_delete'
+                      ))
+def article_edit(request, pk=None):
+    if request.method == 'POST':
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return render(request, "article/success.html", context={'info': '提交成功'})
+    else:
+        form = ArticleForm()
+    context = {"form": form}
+    return render(request, "article/markdown.html", context)

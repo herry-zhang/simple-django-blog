@@ -2,7 +2,7 @@ from article.models import Article
 from collection.models import Collection
 
 
-def get_content():
+def get_sidebar_content():
     try:
         popular_articles = Article.objects.order_by("-views")[:5]
         new_articles = Article.objects.order_by("-pub_time")[:5]

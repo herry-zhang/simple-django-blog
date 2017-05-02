@@ -1,6 +1,6 @@
     <div>
         <h4 class="blue">最近更新的文章</h4>
-        {% for article in articles %}
+        {% for article in new_articles %}
             <ul>
                 <li>
                     <time datetime="{{ article.pub_time }}" class="post-meta">
@@ -15,12 +15,13 @@
     </div>
     <div>
         <h4>最近收藏的收集</h4>
-        {% for collection in collections %}
+        {% for collection in new_collections %}
             <ul>
                 <li>
                     <time class="post-mute" datetime="{{ collection.pub_time }}">
                         <small>{{ collection.pub_time|date:"Y-m-d" }}</small>
                     </time>
+                    »
                     <a class="post-title" href={{ collection.url }}><strong>{{ collection.title }}</strong></a>
                 </li>
             </ul>

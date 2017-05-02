@@ -1,5 +1,30 @@
 {% extends 'base.html' %}
 {% load mk %}
+{% block head %}
+<style rel="stylesheet">
+    /*搜索框*/
+    form ul {
+        list-style-type: none;
+    }
+
+    [for=id_q] {
+        display: none;
+    }
+
+    #id_q {
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
+        display: block;
+        border: none;
+        padding: 12px 12px;
+        width: 70%;
+        background: #fff;
+    }
+
+    label {
+        display: none;
+    }
+</style>
+{% endblock %}
 {% block title %}搜索{% endblock %}
 {% block body %}
         <form class="comment-form search-form" action="{% url 'haystack_search' %}" method="GET" role="search">

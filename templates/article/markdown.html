@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}编辑{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static "article/css/editormd.min.css" %}"/>
+    <style rel="stylesheet">
+        #id_content {
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.title }}
+
+        {{ form.category }}
+        <div id="test-editormd">
+            {{ form.content }}
+        </div>
+        <script src="{% static "article/js/editormd.min.js" %}"></script>
+        <script type="text/javascript">
+            var testEditor;
+            $(function () {
+                testEditor = editormd("test-editormd", {
+                    width: "100%",
+                    height: 600,
+                    syncScrolling: "single",
+                    path: "/static/article/js/lib/",
+                    toolbarIcons: function () {
+                        return ['undo', 'redo', "bold", "hr", "preview", "fullscreen"]
+                    },
+                    tex: true
+                })
+            });
+            $('#id_title').attr({
+                'class': 'form-control max-width-60',
+                'style': 'float :left'
+            });
+
+            $('#id_category').attr({
+                'class': 'selectpicker show-tick form-control max-width-40',
+                'style': 'float :left'
+            });
+        </script>
+        <input class="btn btn-default" type="submit" value="保存提交"/>
+    </form>
+
+{% endblock %}

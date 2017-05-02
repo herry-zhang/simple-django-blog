@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block head %}
+    <script type="text/javascript">
+        function countDown(secs, surl) {
+            //alert(surl);
+            var jumpTo = document.getElementById('jumpTo');
+            jumpTo.innerHTML = secs;
+            if (--secs > 0) {
+                setTimeout("countDown(" + secs + ",'" + surl + "')", 1000);
+            }
+            else {
+                location.href = surl;
+            }
+        }
+    </script>
+{% endblock %}
+{% block title %}成功{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="alert-dismissable text-center">
+            <h1>{{ info }}</h1>
+            </br>
+            <h2><span id="jumpTo">5</span>秒后跳转回首页！</h2>
+            </br>
+            <script type="text/javascript">countDown(5, '{% url 'home' %}');</script>
+            <h2><a href="{% url 'home' %}">点击此处立刻返回首页！</a></h2>
+        </div>
+    </div>
+{% endblock %}

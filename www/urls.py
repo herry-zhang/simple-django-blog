@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'index', index, name="index"),
     url(r'^logout/$', logout, name='logout'),
-    url(r'^admin/', admin.site.urls),
+    url(r'^account/', admin.site.urls),
     url(r'^search/', include('haystack.urls'), name='search'),
     url(r'^article/', include('article.urls')),
     url(r'^collection/', include('collection.urls')),
