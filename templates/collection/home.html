@@ -36,7 +36,7 @@
                 {% endif %}
                 {% for page in page_num %}
                     {% ifequal current_page page %}
-                        <li class="activate"><a
+                        <li class="active"><a
                                 href="?p={{ page }}">{{ page }}</a></li>
                     {% else %}
                         <li><a href="?p={{ page }}">{{ page }}</a></li>
