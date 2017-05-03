@@ -7,6 +7,6 @@ from article.views import *
 urlpatterns = [
     url(r'^$', home, name='article'),
     url(r'(?P<pk>\d+)/$', detail, name='article_detail'),
-    url(r'^feed/$', LatestArticleFeed(), name='feed'),
+    url(r'^feed\.xml$', LatestArticleFeed(), name='feed'),
     url(r'edit/$', article_edit, name='article_add'),
 ]
