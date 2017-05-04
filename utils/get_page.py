@@ -1,8 +1,8 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
-def get_page(request, post, count=5):
-    paginator = Paginator(post, count)
+def get_page(request, post, limit=5):
+    paginator = Paginator(post, limit)
     _page_num = paginator.num_pages
     _page = request.GET.get('p')
     if not _page:

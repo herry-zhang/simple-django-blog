@@ -2,17 +2,14 @@ from datetime import datetime
 from django.contrib.auth.decorators import permission_required, login_required
 from django.shortcuts import render, Http404
 from utils.get_page import get_page
-from utils.get_sidebar_content import get_sidebar_content
+from utils.get_popular import get_popular
 from article.models import Article, Category
 from article.forms import ArticleForm
 
 
 def home(request):
     posts = Article.objects.all().order_by("-pub_time")
-    _dict = get_page(request, posts, 5)
-    _ = get_sidebar_content()
-    context = _dict.copy()
-    context.update(_)
+    context = get_page(request, posts, 8)
     return render(request, 'article/home.html', context)
 
 
@@ -32,7 +29,7 @@ def detail(request, pk):
         reset = True
     try:
         article = Article.objects.get(id=pk)
-        context = get_sidebar_content()
+        context = get_popular()
         context["article"] = article
         if reset:
             category = article.category.name

@@ -9,7 +9,7 @@
         }
     </style>
 {% endblock %}
-{% block body %}
+{% block main_without_sidebar %}
     <form action="" method="post">
         {% csrf_token %}
         {{ form.title }}

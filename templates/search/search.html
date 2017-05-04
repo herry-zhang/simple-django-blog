@@ -1,83 +1,93 @@
 {% extends 'base.html' %}
-{% load mk %}
+{% load humanize %}
 {% block head %}
-<style rel="stylesheet">
-    /*搜索框*/
-    form ul {
-        list-style-type: none;
-    }
+    <script>
+        function dispatch_baidu() {
+            var wd = document.getElementById("wd");
+            if (wd.value != "") {
+                var url = 'https://www.baidu.com/s?wd=site:willtunner.me%20' + wd.value;
+                if (navigator.userAgent.indexOf('iPad') > -1 || navigator.userAgent.indexOf('iPod') > -1 || navigator.userAgent.indexOf('iPhone') > -1) {
+                    location.href = url;
+                } else {
+                    window.open(url, "_blank");
+                }
+                return false;
+            } else {
+                return false;
+            }
+        }
+        function dispatch_google() {
+            var q = document.getElementById("q");
+            if (q.value != "") {
+                var url = 'https://www.google.com/search?q=site:willtunner.me%20' + q.value;
+                if (navigator.userAgent.indexOf('iPad') > -1 || navigator.userAgent.indexOf('iPod') > -1 || navigator.userAgent.indexOf('iPhone') > -1) {
+                    location.href = url;
+                } else {
+                    window.open(url, "_blank");
+                }
+                return false;
+            } else {
+                return false;
+            }
+        }
 
-    [for=id_q] {
-        display: none;
-    }
-
-    #id_q {
-        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
-        display: block;
-        border: none;
-        padding: 12px 12px;
-        width: 70%;
-        background: #fff;
-    }
-
-    label {
-        display: none;
-    }
-</style>
+    </script>
 {% endblock %}
 {% block title %}搜索{% endblock %}
-{% block body %}
-        <form class="comment-form search-form" action="{% url 'haystack_search' %}" method="GET" role="search">
-
-            <ul>
-                    {{ form.as_ul }}
-            </ul>
-{#            <div class="input-group">#}
-{#                <input name="q" type="text" class="form-control" placeholder="搜索"/>#}
-{#                <span class="input-group-btn">#}
-{#                                <button type="submit" class="btn btn-default">搜索</button>#}
-{#                            </span>#}
-{#            </div>#}
-{#            <div>#}
-{#                <ul id="id_models" class="list-inline">#}
-{#                    <li>搜索包含：</li>#}
-{#                    <li><label for="id_models_0"><input type="checkbox" name="models" value="collection.collection" id="id_models_0" checked/>收集</label>#}
-{#                    </li>#}
-{#                    <li><label for="id_models_1"><input type="checkbox" name="models" value="article.article" id="id_models_1" checked/>文章</label>#}
-{#                    </li>#}
-{#                </ul>#}
-{#            </div>#}
-        </form>
-    </br>
-    {% if query %}
-        {% for post in page.object_list %}
-            <div>
-                <h3><a class="post-title" href="{{ post.object.get_url }}">{{ post.title }}</a></h3>
-                <small class="text-muted">
-                    <span class="glyphicon glyphicon-time">{{ post.object.pub_time | date:"Y-m-d" }}</span>
-                    <span class="glyphicon glyphicon-user">{{ post.object.author }}</span>
-                    <span class="glyphicon glyphicon-tag">{{ post.object.category }}</span>
-                </small>
-                <p>{{ post.content | truncatechars_html:180 }}{{ post.description }}</p>
+{% block main_without_sidebar %}
+    <div class="max-width-85">
+        <div class="row">
+            <div class="col-md-6">
+                <p>试一试Google?</p>
+                <form class="navbar-form" method="GET" onsubmit="return dispatch_google()" action="http://www.google.com/search" target="_blank">
+                    <input class="form-control" type="text" name="q" id="q">
+                    <button type="submit" class="btn btn-default">Google</button>
+                </form>
             </div>
-            <hr>
-        {% empty %}
-            <p>没有搜索结果，试一试Goole？</p>
-            <p>打不开Google， 试一试百度？</p>
-        {% endfor %}
-
-
-        {% if page.has_previous or page.has_next %}
-            <div>
-                {% if page.has_previous %}
-                    <a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo;
-                Previous{% if page.has_previous %}</a>{% endif %}
-                |
-                {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}
-                Next &raquo;{% if page.has_next %}</a>{% endif %}
+            <div class="col-md-6">
+                <p>试一试百度？</p>
+                <form class="navbar-form" action="http://www.baidu.com/s" onsubmit="return dispatch_baidu()" target="_blank">
+                    <input class="form-control" type="text" name="wd" id="wd">
+                    <button type="submit" class="btn btn-default">百度</button>
+                </form>
             </div>
+        </div>
+        {% if query %}
+            {% for post in page.object_list %}
+                <div class="post">
+                    <h3><a class="post-title" href="{{ post.get_url }}">{{ post.title }}</a></h3>
+                    <ul class="list-inline">
+                        <li class="text-muted small"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{ post.pub_time | naturaltime }}</li>
+                        <li class="text-muted small"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ post.author }}</li>
+                        <li class="text-muted small"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>{{ post.category }}</li>
+                    </ul>
+                    <p>{{ post.content | truncatechars_html:180 }}{{ post.description }}</p>
+                    <a class="post-meta" href="{{ post.get_url }}">阅读全文&raquo;</a>
+                </div>
+            {% empty %}
+                <p style="margin-top: 40px">没有找到任何内容！</p>
+            {% endfor %}
+            {% if page.has_previous or page.has_next %}
+                <nav aria-label=" Page navigation">
+                    <ul class="pagination">
+                        {% if page.has_previous %}
+                            <li>
+                            <a href="?p={{ post_list.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;上一页</span>
+                            </a>
+                        {% endif %}
+                        {% if post_list.has_next %}
+                            <li>
+                                <a href="?p={{ post_list.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">下一页&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+        {% else %}
+            <p style="margin-top: 40px">请输入搜索内容...</p>
         {% endif %}
-    {% else %}
-        <p>请输入搜索内容...</p>
-    {% endif %}
+    </div>
 {% endblock %}

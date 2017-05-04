@@ -1,21 +1,10 @@
 html, body {
     height: 100%;
+    font-family: 'Open Sans', 'Helvetica Neue', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
 }
 
 .wrapper {
     min-height: 100%
-}
-
-.nav-left {
-    width: 240px;
-    position: absolute;
-    *position: relative;
-    float: left;
-}
-
-.main-right {
-    margin-left: 300px;
-    position: relative;
 }
 
 .footer {
@@ -47,6 +36,13 @@ html, body {
     margin: 0 auto;
 }
 
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 img, a img {
     border: 0;
     margin: 0;
@@ -64,12 +60,18 @@ img, a img {
 }
 
 .sidebar-title {
-    color: #2C2827;
+    color: #4A4A4A;
+}
+
+.post {
+    border-bottom: 1px solid #ccc;
+    padding: 30px 0;
+    position: relative;
 }
 
 .post-title {
     margin-bottom: 5px;
-    color: #1A1A17;
+    color: #111;
 }
 
 .post-meta {
@@ -78,22 +80,6 @@ img, a img {
 }
 
 .post-content {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
-#markededitor {
-}
-
-#markededitor {
-    width: 45%;
-    height: 100%;
-    position: absolute;
-    *position: relative;
-    float: left;
-}
-
-#markedtext {
-    margin-left: 55%;
-    position: relative;
-    max-height: 100%;
-}

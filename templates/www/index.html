@@ -7,7 +7,7 @@
     <li><a class="nav-link" href="{% url 'collection' %}">收集</a></li>
     <li><a class="nav-link" href="{% url 'feed' %}">订阅</a></li>
 {% endblock %}
-{% block body %}
+{% block main_without_sidebar %}
 {% include 'www/home_body.html' %}
 {% endblock %}
 

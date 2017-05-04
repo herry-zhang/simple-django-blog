@@ -15,20 +15,14 @@
     </script>
 {% endblock %}
 {% block title %}错误{% endblock %}
-{% block body %}
-    <div class="container">
-        <div class="alert-dismissable text-center">
-            <h1>Oops...</h1>
-            {% if form_errors %}
-                <p>{{ form_errors }}</p>
-            {% else %}
-                <h1>无法找到你要打开的网页!</h1>
-                </br>
-                <h2><span id="jumpTo">5</span>秒后跳转回首页！</h2>
-                </br>
-                <script type="text/javascript">countDown(5, '{% url 'home' %}');</script>
-                <h2><a href="{% url 'home' %}">点击此处立刻返回首页！</a></h2>
-            {% endif %}
-        </div>
+{% block main_without_sidebar %}
+    <div class="alert-dismissable text-center">
+        <h1>Oops...</h1>
+        <h1>无法找到你要打开的网页!</h1>
+        </br>
+        <h2><span id="jumpTo">5</span>秒后跳转回首页！</h2>
+        </br>
+        <script type="text/javascript">countDown(5, '{% url 'home' %}');</script>
+        <h2><a href="{% url 'home' %}">点击此处立刻返回首页！</a></h2>
     </div>
 {% endblock %}

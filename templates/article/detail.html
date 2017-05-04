@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% load mk %}
 {% block title %}{{ article.title }}{% endblock %}
-{% block body %}
-    <div style="margin-top: 20px;">
-        <h2><a class="post-title" href="{% url "article_detail" pk=article.id %}" itemprop="url"><strong>{{ article.title }}</strong></a></h2>
-        <small class="text-muted">
-            <span class="glyphicon glyphicon-time">{{ article.pub_time | date:"Y-m-d" }}</span>
-            <span class="glyphicon glyphicon-user">{{ article.author }}</span>
-            <span class="glyphicon glyphicon-tag">{{ article.category }}</span>
-        </small>
+{% block main_without_sidebar %}
+    <div class="post max-width-85">
+        <h2><a class="post-title" href="{{ article.get_url }}"><strong>{{ article.title }}</strong></a></h2>
+        <ul class="list-inline">
+            <li class="text-muted small"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{ post.pub_time|naturaltime }}</li>
+            <li class="text-muted small"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ post.author }}</li>
+            <li class="text-muted small"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>{{ post.category }}</li>
+        </ul>
         <div class="post-content">{{ article.content | mk }}</div>
     </div>
 {% endblock %}

@@ -1,31 +1,31 @@
 {% extends "base.html" %}
+{% load humanize %}
 {% block title %}收集{% endblock %}
 {% block nav-link %}
-<li><a class="nav-link" href="{% url 'index' %}">首页</a></li>
-<li><a class="nav-link" href="{% url 'article' %}">文章</a></li>
-<li class="active"><a class="nav-link" href="{% url 'collection' %}">收集</a></li>
-<li><a class="nav-link" href="{% url 'feed' %}">订阅</a></li>
+    <li><a class="nav-link" href="{% url 'index' %}">首页</a></li>
+    <li><a class="nav-link" href="{% url 'article' %}">文章</a></li>
+    <li class="active"><a class="nav-link" href="{% url 'collection' %}">收集</a></li>
+    <li><a class="nav-link" href="{% url 'feed' %}">订阅</a></li>
 {% endblock %}
-{% block main %}
+{% block main_without_sidebar %}
+    <div class="max-width-85">
         {% for post in post_list %}
-            <div>
+            <div class="post">
                 <h3><a class="post-title" href="{{ post.get_url }}">{{ post.title }}</a></h3>
-                <small class="text-muted">
-                    <span class="glyphicon glyphicon-time">{{ post.pub_time | date:"Y-m-d" }}</span>
-                    <span class="glyphicon glyphicon-user">{{ post.author }}</span>
-                    <span class="glyphicon glyphicon-tag">{{ post.category }}</span>
-                </small>
+                <ul class="list-inline">
+                    <li class="text-muted small"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{ post.pub_time | naturaltime }}</li>
+                    <li class="text-muted small"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ post.author }}</li>
+                    <li class="text-muted small"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>{{ post.category }}</li>
+                </ul>
                 <p>{{ post.description }}</p>
                 <a class="post-meta" href="{{ post.get_url }}">转到原网页阅读全文&raquo;</a>
             </div>
-                <hr>
         {% endfor %}
         <nav aria-label=" Page navigation">
             <ul class="pagination">
                 {% if post_list.has_previous %}
                     <li>
-                        <a href="?p={{ post_list.previous_page_number }}"
-                           aria-label="Previous">
+                        <a href="?p={{ post_list.previous_page_number }}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
@@ -36,17 +36,15 @@
                 {% endif %}
                 {% for page in page_num %}
                     {% ifequal current_page page %}
-                        <li class="active"><a
-                                href="?p={{ page }}">{{ page }}</a></li>
+                        <li class="active"><a href="?p={{ page }}">{{ page }}</a></li>
                     {% else %}
                         <li><a href="?p={{ page }}">{{ page }}</a></li>
                     {% endifequal %}
                 {% endfor %}
                 {% if post_list.has_next %}
                     <li>
-                        <a href="?p={{ post_list.next_page_number }}""
-                        aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
+                        <a href="?p={{ post_list.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
                 {% endif %}
@@ -57,4 +55,5 @@
                 {% endif %}
             </ul>
         </nav>
+    </div>
 {% endblock %}
