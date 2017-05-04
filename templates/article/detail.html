@@ -4,12 +4,12 @@
 {% block title %}{{ article.title }}{% endblock %}
 {% block main_without_sidebar %}
     <div class="post max-width-85">
-        <h2><a class="post-title" href="{{ article.get_url }}"><strong>{{ article.title }}</strong></a></h2>
+        <h2><strong>{{ article.title }}</strong></h2>
         <ul class="list-inline">
-            <li class="text-muted small"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{ post.pub_time|naturaltime }}</li>
-            <li class="text-muted small"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ post.author }}</li>
-            <li class="text-muted small"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>{{ post.category }}</li>
+            <li class="text-muted small"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{ article.pub_time|naturaltime }}</li>
+            <li class="text-muted small"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ article.author }}</li>
+            <li class="text-muted small"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>{{ article.category }}</li>
         </ul>
-        <div class="post-content">{{ article.content | mk }}</div>
+        <article class="post-content" id="post-content">{{ article.content | mk }}</article>
     </div>
 {% endblock %}
