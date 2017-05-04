@@ -51,11 +51,11 @@
                                 </li>
                             {% endif %}
                             <li>
-                                <form id="searchform" method="get" class="navbar-form navbar-right" action="{% url 'haystack_search' %}" role="search">
-                                    <label for="navbar-search" class="sr-only">Search:</label>
-                                    <div class="form-group has-feedback has-feedback-left">
-                                        <span class="form-control-feedback"><i class="fa fa-search" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="q" id="navbar-search" value="" placeholder="Search"/>
+                                <form id="navbar-search-form" method="get" class="navbar-form navbar-right" action="{% url 'haystack_search' %}">
+                                    <div class="input-group has-feedback">
+                                        <input type="text" style="border-radius:5px;" class="form-control" name="q" id="navbar-search" value="" placeholder="Search"/>
+                                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+
                                     </div>
                                 </form>
                             </li>
