@@ -7,7 +7,7 @@ from django.conf import settings
 from www.views import *
 
 urlpatterns = [
-    url(r'^$', home, name='home'),
+    url(r'^$', index, name='home'),
     url(r'index/$', index, name="index"),
     url(r'^logout/$', logout, name='logout'),
     url(r'^account/', admin.site.urls),

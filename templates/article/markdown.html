@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}编辑{% endblock %}
 {% block head %}
-    <link rel="stylesheet" href="{% static "article/css/editormd.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/editormd.min.css" %}"/>
     <style rel="stylesheet">
         #id_content {
             display: none;
@@ -18,7 +18,7 @@
         <div id="test-editormd">
             {{ form.content }}
         </div>
-        <script src="{% static "article/js/editormd.min.js" %}"></script>
+        <script src="{% static "js/editormd.min.js" %}"></script>
         <script type="text/javascript">
             var testEditor;
             $(function () {
@@ -26,7 +26,7 @@
                     width: "100%",
                     height: 600,
                     syncScrolling: "single",
-                    path: "/static/article/js/editor/",
+                    path: "/static/editor/",
                     toolbarIcons: function () {
                         return ['undo', 'redo', "bold", "hr", "preview", "fullscreen"]
                     },

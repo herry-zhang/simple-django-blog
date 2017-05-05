@@ -3,10 +3,8 @@
 {% load mk %}
 {% block title %}文章{% endblock %}
 {% block nav-link %}
-    <li><a class="nav-link" href="{% url 'index' %}">首页</a></li>
     <li class="active"><a class="nav-link" href="{% url 'article' %}">文章</a></li>
     <li><a class="nav-link" href="{% url 'collection' %}">收集</a></li>
-    <li><a class="nav-link" href="{% url 'feed' %}">订阅</a></li>
 {% endblock %}
 {% block main_without_sidebar %}
     <div class="max-width-85">
