@@ -11,11 +11,6 @@
         <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
         <link href="{% static "css/base.css" %}" rel="stylesheet">
         <script src="{% static "js/jquery.slim.min.js" %}"></script>
-        <script>function logout() {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open('GET', "{% url 'admin:logout' %}", true)
-            xmlhttp.send()
-        }</script>
         {% block head %}{% endblock %}
         <title>{% block title %}{% endblock %} -Willtunner</title>
     </head>
@@ -70,7 +65,7 @@
                                         <button type="button" class="btn btn-default" data-dismiss="modal">
                                             取消
                                         </button>
-                                        <a type="button" class="btn btn-primary">
+                                        <a type="button" class="btn btn-primary" href="{% url 'admin:logout' %}">
                                             确认
                                         </a>
                                     </div>
