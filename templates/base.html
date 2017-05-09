@@ -13,7 +13,7 @@
         <script src="{% static "js/jquery.slim.min.js" %}"></script>
         <script>function logout() {
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open('POST', "{% url 'admin:logout' %}", true)
+            xmlhttp.open('GET', "{% url 'admin:logout' %}", true)
             xmlhttp.send()
         }</script>
         {% block head %}{% endblock %}
