@@ -6,8 +6,8 @@ __pycache__
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-*/migrations/*
-!*/migrations/__init__.py
+migrations/*
+!migrations/__init__.py
 whoosh_index
 SECRET_KEY
 /conf/*

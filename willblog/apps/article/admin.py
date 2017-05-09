@@ -1,9 +1,5 @@
 from django.contrib import admin
-from willblog.apps.article.models import Article, Category
-
-
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'views')
+from willblog.apps.article.models import Article
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -12,4 +8,3 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Article, ArticleAdmin)
-admin.site.register(Category, CategoryAdmin)

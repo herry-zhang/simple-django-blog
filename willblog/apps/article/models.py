@@ -2,19 +2,7 @@
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-
-
-class Category(models.Model):
-    name = models.CharField(max_length=20, unique=True, verbose_name='分类')
-    views = models.IntegerField(default=1, verbose_name='浏览次数')
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        ordering = ['-views']
-        verbose_name = '分类'
-        verbose_name_plural = '分类'
+from willblog.apps.category.models import Category
 
 
 class Article(models.Model):

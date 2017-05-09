@@ -16,6 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     # usermod apps
+    'willblog.apps.category',
     'willblog.apps.article',
     'willblog.apps.collection',
     'willblog.apps.index',

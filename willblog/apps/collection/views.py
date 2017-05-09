@@ -1,8 +1,7 @@
 from datetime import datetime
-
 from django.shortcuts import render, Http404, redirect
-
-from willblog.apps.collection.models import Collection, Category
+from willblog.apps.collection.models import Collection
+from willblog.apps.category.models import Category
 from willblog.utils.model_get.get_page import get_page
 
 

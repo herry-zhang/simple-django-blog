@@ -1,10 +1,9 @@
 from datetime import datetime
-
 from django.contrib.auth.decorators import permission_required, login_required
 from django.shortcuts import render, Http404
-
 from willblog.apps.article.forms import ArticleForm
-from willblog.apps.article.models import Article, Category
+from willblog.apps.article.models import Article
+from willblog.apps.category.models import Category
 from willblog.utils.model_get.get_page import get_page
 from willblog.utils.model_get.get_popular import get_popular
 
