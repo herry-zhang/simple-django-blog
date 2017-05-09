@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block head %}
+    <script>
+        function dispatch_baidu() {
+            var wd = document.getElementById("wd");
+            if (wd.value != "") {
+                var url = 'https://www.baidu.com/s?wd=site:willtunner.me%20' + wd.value;
+                if (navigator.userAgent.indexOf('iPad') > -1 || navigator.userAgent.indexOf('iPod') > -1 || navigator.userAgent.indexOf('iPhone') > -1) {
+                    location.href = url;
+                } else {
+                    window.open(url, "_blank");
+                }
+                return false;
+            } else {
+                return false;
+            }
+        }
+        function dispatch_google() {
+            var q = document.getElementById("q");
+            if (q.value != "") {
+                var url = 'https://www.google.com/search?q=site:willtunner.me%20' + q.value;
+                if (navigator.userAgent.indexOf('iPad') > -1 || navigator.userAgent.indexOf('iPod') > -1 || navigator.userAgent.indexOf('iPhone') > -1) {
+                    location.href = url;
+                } else {
+                    window.open(url, "_blank");
+                }
+                return false;
+            } else {
+                return false;
+            }
+        }
+
+    </script>
+{% endblock %}
+{% block title %}搜索{% endblock %}
+{% block main_without_sidebar %}
+    <div class="text-center max-width-85">
+        <div style="margin: 40px 0;"><h2>站内搜索暂未提供，试一试搜索引擎</h2></div>
+        <div style="margin-top: 40px">
+            <form class="form-inline" method="GET" onsubmit="return dispatch_google()" action="http://www.google.com/search" target="_blank">
+                <input class="form-control" type="text" name="q" id="q">
+                <button type="submit" class="btn btn-default">Google</button>
+            </form>
+        </div>
+        <div style="margin: 40px 0;">
+            <form class="form-inline" action="http://www.baidu.com/s" onsubmit="return dispatch_baidu()" target="_blank">
+                <input class="form-control" type="text" name="wd" id="wd">
+                <button type="submit" class="btn btn-default">百度一下</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
