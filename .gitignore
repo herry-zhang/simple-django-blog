@@ -11,5 +11,5 @@ Desktop.ini
 whoosh_index
 SECRET_KEY
 /conf/*
-/datebase/*
+/database/*
 
