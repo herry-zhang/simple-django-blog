@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}首页{% endblock %}
+{% block main_without_sidebar %}
+    <div class="row max-width-85">
+        <div class="col-md-12">
+                <ul class="list-inline">
+                    {% for cat in categories %}
+                    <li class="btn btn-default" style="margin: 0.5em 0.5em">
+                        <a href="{{ cat.get_url }}">{{ cat.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+        </div>
+    </div>
+{% endblock %}

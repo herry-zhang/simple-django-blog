@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}首页{% endblock %}
+{% block main_without_sidebar %}
+    <div class="row max-width-85">
+        <div class="col-md-12">
+            <div>
+                <ul class="list-inline">
+                    {% for cat in categories %}
+                        {% ifequal cat.name category.name %}
+                            <li class="btn btn-primary" style="margin: 0.5em 0.5em">
+                                <a style="color: white" href="{{ cat.get_url }}">{{ cat.name }}</a>
+                            </li>
+                        {% else %}
+                            <li class="btn btn-default" style="margin: 0.5em 0.5em">
+                                <a href="{{ cat.get_url }}">{{ cat.name }}</a>
+                            </li>
+                        {% endifequal %}
+
+                    {% endfor %}
+                </ul>
+                <div>
+                    <h3>{{ category.name }}</h3>
+                </div>
+                <div class="tabbable">
+                    <ul class="nav nav-tabs">
+                        <li>
+                            <a href="#post-article" data-toggle="tab">文章</a>
+                        </li>
+                        <li>
+                            <a href="#post-collection" data-toggle="tab">收集</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="post-article">
+                            {% for post in articles %}
+                                <div class="post">
+                                    <h3><a class="post-title" href="{{ post.get_url }}">{{ post.title }}</a></h3>
+                                    <ul class="list-inline">
+                                        <li class="text-muted small"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{ post.update_time | naturaltime }}</li>
+                                        <li class="text-muted small"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ post.author }}</li>
+                                        <li class="text-muted small"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>{{ post.category }}</li>
+                                    </ul>
+                                    <p>{{ post.content | truncatechars_html:180 }}</p>
+                                    <a class="post-meta" href="{{ post.get_url }}">阅读全文&raquo;</a>
+                                </div>
+                            {% empty %}
+                                <div class="post">
+                                    <h3>暂时没有文章。</h3>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="tab-pane" id="post-collection">
+                            {% for post in collections %}
+                                <div class="post">
+                                    <h3><a class="post-title" href="{{ post.get_url }}">{{ post.title }}</a></h3>
+                                    <ul class="list-inline">
+                                        <li class="text-muted small"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{ post.update_time | naturaltime }}</li>
+                                        <li class="text-muted small"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ post.author }}</li>
+                                        <li class="text-muted small"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>{{ post.category }}</li>
+                                    </ul>
+                                    <p>{{ post.description }}</p>
+                                    <a class="post-meta" href="{{ post.get_url }}">转到原网页阅读全文&raquo;</a>
+                                </div>
+                            {% empty %}
+                                <div class="post">
+                                    <h3>暂时没有文章。</h3>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
