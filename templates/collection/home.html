@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %}收集{% endblock %}
 {% block nav-link %}
-    <li><a class="nav-link" href="{% url 'article:index' %}">文章</a></li>
-    <li class="active"><a class="nav-link" href="{% url 'collection:index' %}">收集</a></li>
+    <li><a href="{% url 'article:index' %}">文章</a></li>
+    <li class="active"><a href="{% url 'collection:index' %}">收集</a></li>
 {% endblock %}
 {% block main_without_sidebar %}
     <div class="max-width-85">

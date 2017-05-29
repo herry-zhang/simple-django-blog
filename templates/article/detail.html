@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
-{% load humanize %}
 {% load mk %}
 {% block title %}{{ article.title }}{% endblock %}
 {% block main_without_sidebar %}
     <div class="post max-width-85">
         <h2><strong>{{ article.title }}</strong></h2>
         <ul class="list-inline">
-            <li class="text-muted small"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{ article.update_time|naturaltime }}</li>
+            <li class="text-muted small"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{ article.update_time }}</li>
             <li class="text-muted small"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ article.author }}</li>
             <li class="text-muted small"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>{{ article.category }}</li>
         </ul>

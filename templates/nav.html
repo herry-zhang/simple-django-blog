@@ -9,10 +9,10 @@
       <a class="navbar-brand" href="{% url "index:index" %}"><span style="font-size: 28px; font-weight: bold; color: #585858;">Willtunner</span></a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-    {% block nav-link %}
-      <li><a href="{% url 'article:index' %}">文章</a></li>
-      <li><a href="{% url 'collection:index' %}">收集</a></li>
-    {% endblock %}
+      {% block nav-link %}
+        <li><a href="{% url 'article:index' %}">文章</a></li>
+        <li><a href="{% url 'collection:index' %}">收集</a></li>
+      {% endblock %}
       <li><a href="{% url 'article:feed' %}">订阅</a></li>
       {% if user.is_authenticated %}
         <li class="dropdown">

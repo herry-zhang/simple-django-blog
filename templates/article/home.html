@@ -1,67 +1,62 @@
 {% extends "base.html" %}
-{% load mk %}
 {% block title %}文章{% endblock %}
 {% block nav-link %}
-  <li class="active">
-    <a class="nav-link" href="{% url 'article:index' %}">文章</a>
-  </li>
-  <li><a class="nav-link" href="{% url 'collection:index' %}">收集</a></li>
+  <li class="active"><a href="{% url 'article:index' %}">文章</a></li>
+  <li><a href="{% url 'collection:index' %}">收集</a></li>
 {% endblock %}
 {% block main_without_sidebar %}
-  <div class="max-width-85">
-    {% for post in post_list %}
-      <div class="post">
-        <h3><a class="post-title" href="{{ post.get_url }}">{{ post.title }}</a>
-        </h3>
-        <ul class="list-inline">
-          <li class="text-muted small">
-            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{ post.update_time }}
-          </li>
-          <li class="text-muted small">
-            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ post.author }}
-          </li>
-          <li class="text-muted small">
-            <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>{{ post.category }}
-          </li>
-        </ul>
-        <p>{{ post.content | truncatechars_html:180 }}</p>
-        <a class="post-meta" href="{{ post.get_url }}">阅读全文&raquo;</a>
-      </div>
-    {% endfor %}
-    <nav aria-label="Page navigation">
-      <ul class="pagination">
-        {% if post_list.has_previous %}
-          <li>
-            <a href="?p={{ post_list.previous_page_number }}" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-        {% endif %}
-        {% if first_page %}
-          <li><a href="?p=1">1</a></li>
-          <li>...</li>
-        {% endif %}
-        {% for page in page_num %}
-          {% ifequal current_page page %}
-            <li class="active"><a href="?p={{ page }}">{{ page }}</a></li>
-          {% else %}
-            <li><a href="?p={{ page }}">{{ page }}</a></li>
-          {% endifequal %}
-        {% endfor %}
-        {% if post_list.has_next %}
-          <li>
-            <a href="?p={{ post_list.next_page_number }}" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        {% endif %}
-        {% if lastpage %}
-          <li>...</li>
-          <li><a href="?p={{ last_page }}">{{ last_page }}</a>
-          </li>
-        {% endif %}
+  {% for post in post_list %}
+    <div class="post">
+      <h3><a class="post-title" href="{{ post.get_url }}">{{ post.title }}</a>
+      </h3>
+      <ul class="list-inline">
+        <li class="text-muted small">
+          <span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{ post.update_time }}
+        </li>
+        <li class="text-muted small">
+          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ post.author }}
+        </li>
+        <li class="text-muted small">
+          <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>{{ post.category }}
+        </li>
       </ul>
-    </nav>
-  </div>
+      <p>{{ post.content | truncatechars_html:180 }}</p>
+      <a class="post-meta" href="{{ post.get_url }}">阅读全文&raquo;</a>
+    </div>
+  {% endfor %}
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      {% if post_list.has_previous %}
+        <li>
+          <a href="?p={{ post_list.previous_page_number }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      {% endif %}
+      {% if first_page %}
+        <li><a href="?p=1">1</a></li>
+        <li>...</li>
+      {% endif %}
+      {% for page in page_num %}
+        {% ifequal current_page page %}
+          <li class="active"><a href="?p={{ page }}">{{ page }}</a></li>
+        {% else %}
+          <li><a href="?p={{ page }}">{{ page }}</a></li>
+        {% endifequal %}
+      {% endfor %}
+      {% if post_list.has_next %}
+        <li>
+          <a href="?p={{ post_list.next_page_number }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      {% endif %}
+      {% if lastpage %}
+        <li>...</li>
+        <li><a href="?p={{ last_page }}">{{ last_page }}</a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
 {% endblock %}
 
