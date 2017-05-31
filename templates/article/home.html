@@ -28,32 +28,32 @@
     <ul class="pagination">
       {% if post_list.has_previous %}
         <li>
-          <a href="?p={{ post_list.previous_page_number }}" aria-label="Previous">
+          <a href="?page={{ post_list.previous_page_number }}" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
       {% endif %}
       {% if first_page %}
-        <li><a href="?p=1">1</a></li>
+        <li><a href="?page=1">1</a></li>
         <li>...</li>
       {% endif %}
       {% for page in page_num %}
         {% ifequal current_page page %}
-          <li class="active"><a href="?p={{ page }}">{{ page }}</a></li>
+          <li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
         {% else %}
-          <li><a href="?p={{ page }}">{{ page }}</a></li>
+          <li><a href="?page={{ page }}">{{ page }}</a></li>
         {% endifequal %}
       {% endfor %}
       {% if post_list.has_next %}
         <li>
-          <a href="?p={{ post_list.next_page_number }}" aria-label="Next">
+          <a href="?page={{ post_list.next_page_number }}" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
       {% endif %}
       {% if lastpage %}
         <li>...</li>
-        <li><a href="?p={{ last_page }}">{{ last_page }}</a>
+        <li><a href="?page={{ last_page }}">{{ last_page }}</a>
         </li>
       {% endif %}
     </ul>

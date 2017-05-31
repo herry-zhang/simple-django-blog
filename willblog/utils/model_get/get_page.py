@@ -2,9 +2,15 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def get_page(request, post, limit=5):
+    """
+    request is a HttpRequest object
+    post must be a django model queryset
+    limits mines how many posts per page.
+    """
+
     paginator = Paginator(post, limit)
     _page_num = paginator.num_pages
-    _page = request.GET.get('p')
+    _page = request.GET.get('page')
     if not _page:
         _page = 1
     try:

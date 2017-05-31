@@ -22,7 +22,7 @@ def detail(request, pk):
     if visited and aid:
         last_visit_time = datetime.strptime(visited[:-7],
                                             '%Y-%m-%d %H:%M:%S')
-        #  half hour
+        #  half hour 30*60 == 1800
         if (datetime.now() - last_visit_time).seconds > 1800 and aid == pk:
             reset = True
 
@@ -43,7 +43,7 @@ def detail(request, pk):
             request.session['aid'] = pk
         return render(request, 'article/detail.html', context)
     except Article.DoesNotExist or Category.DoesNotExist:
-        raise Http404
+        raise Http404('Model not found!')
 
 
 @login_required()
