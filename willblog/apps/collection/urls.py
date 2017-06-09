@@ -4,6 +4,6 @@ from django.conf.urls import url
 from willblog.apps.collection import views
 
 urlpatterns = [
-    url(r'^$', views.home, name='index'),
+    url(r'^$', views.index, name='index'),
     url(r'(?P<pk>\d+)/$', views.detail, name='detail'),
 ]

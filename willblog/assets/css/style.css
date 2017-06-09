@@ -1,6 +1,16 @@
-html, body {
+html {
+    position: relative;
     height: 100%;
-    font-family: 'Open Sans', 'Helvetica Neue', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+}
+
+body {
+    height: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;
+}
+
+footer {
+    margin-top: -30px;
+    height: 30px;
 }
 
 .wrapper {
@@ -14,9 +24,40 @@ ul.navbar-right {
     border-color: rgba(205, 205, 205, 0.34);
 }
 
+.nav a {
+    color: #333;
+}
+
+.nav a:hover,
+.nav a:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.nav li a:hover,
+.nav li a:focus {
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+
+ul.navbar-right {
+    height: 45px;
+    border: groove;
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    border-width: 1px;
+    border-color: rgba(205, 205, 205, 0.34);
+}
+
+/* 小屏幕时nav继续横着排列 */
+.navbar-nav > li {
+    float: left;
+}
+
 .nav > li > a {
     color: #333;
 }
+
 .nav > li.active > a {
     color: #333;
     font-weight: bold;
@@ -24,6 +65,7 @@ ul.navbar-right {
 
 .main {
     padding-bottom: 100px;
+    overflow: hidden;
 }
 
 .col-center-block {
@@ -53,7 +95,7 @@ img, a img {
     border: none;
 }
 
-.nav-tabs>li>a {
+.nav-tabs > li > a {
     font-size: 14px;
     margin-right: 2px;
     line-height: 1.42857143;
@@ -61,7 +103,7 @@ img, a img {
     border-radius: 4px;
 }
 
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
     color: #555;
     cursor: default;
     font-size: 16px;
@@ -134,17 +176,13 @@ article h6 {
     color: #737373;
 }
 
-footer {
-    margin-top: -10px;
-    height: 10px;
-}
-
-.footer-about {
-    display: inline;
-}
-
-.footer-copyright {
-    color: #888;
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 50px;
+    background-color: #f5f5f5;
 }
 
 .footer-link {
@@ -152,3 +190,67 @@ footer {
     border-right: 1px solid #d6d6d6;
     padding: 0 6px;
 }
+
+.search {
+    width: 477px;
+    _width: 477px;
+    height: 81px;
+}
+
+.keyword a {
+    font-size: 12px;
+    line-height: 18px;
+    color: #999;
+    padding: 0 4px;
+}
+
+.keyword a span {
+    color: #fb5004;
+}
+
+.tab-bar li.current {
+    color: #1d7ad9;
+    font-weight: bold;
+    padding-bottom: 9px;
+}
+
+.tab-bar li {
+    width: 38px;
+    text-align: center;
+    color: #444;
+    float: left;
+    cursor: pointer;
+}
+
+.tab-bar li.tab-line {
+    width: 2px;
+    color: #c9c9c9;
+    margin: 0 2px;
+}
+
+.tab-box {
+    border: 2px solid #1d7ad9;
+}
+
+.text {
+    color: #a9a9a9;
+    width: 376px;
+    height: 31px;
+    border: none;
+    text-indent: 10px;
+    float: left;
+    outline: none;
+    border: 0;
+}
+
+.button {
+    width: 97px;
+    height: 32px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    background: #1d7ad9;
+    border: none;
+    float: left;
+}
+

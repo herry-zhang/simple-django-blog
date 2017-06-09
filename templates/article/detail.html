@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load mk %}
 {% block title %}{{ article.title }}{% endblock %}
+{% block nav-link %}
+  <li class="active"><a href="{% url 'article:index' %}">文章</a></li>
+  <li><a href="{% url 'collection:index' %}">收集</a></li>
+{% endblock %}
 {% block main_without_sidebar %}
     <div class="post max-width-85">
         <h2><strong>{{ article.title }}</strong></h2>

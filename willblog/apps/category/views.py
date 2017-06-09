@@ -4,10 +4,10 @@ from willblog.apps.collection.models import Collection
 from willblog.apps.category.models import Category
 
 
-def home(request):
+def index(request):
     categories = Category.objects.all()
     context = {'categories': categories}
-    return render(request, 'category/home.html', context)
+    return render(request, 'category/index.html', context)
 
 
 def detail(request, n):

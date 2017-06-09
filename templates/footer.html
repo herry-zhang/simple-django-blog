@@ -5,6 +5,11 @@
       <a class="footer-link" href="https://www.zhihu.com/people/hellohanke/activities" target="_blank">知乎</a>
       <a class="footer-link" href="https://github.com/Willtuner" target="_blank">GitHub</a>
       <a class="footer-link" href="mailto:hanke.amadeus@gmail.com" target="_blank">电子邮件</a>
+      {% if user.is_authenticated %}
+        <a class="footer-link" href="{% url "admin:index" %}">后台</a>
+      {% else %}
+        <a class="footer-link" href="{% url "admin:login" %}">登录</a>
+      {% endif %}
     </div>
     <div class="col-md-6 text-right">
       <div class="footer-copyright">©2017 Willtunner. All Rights Reserved

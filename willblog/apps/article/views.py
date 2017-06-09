@@ -8,10 +8,10 @@ from willblog.utils.model_get.get_page import get_page
 from willblog.utils.model_get.get_popular import get_popular
 
 
-def home(request):
+def index(request):
     posts = Article.objects.all().order_by("-create_time")
     context = get_page(request, posts, 8)
-    return render(request, 'article/home.html', context)
+    return render(request, 'article/index.html', context)
 
 
 def detail(request, pk):

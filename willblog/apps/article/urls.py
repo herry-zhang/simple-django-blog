@@ -6,7 +6,7 @@ from django.conf.urls import url
 from willblog.apps.article import views
 
 urlpatterns = [
-    url(r'^$', views.home, name='index'),
+    url(r'^$', views.index, name='index'),
     url(r'(?P<pk>\d+)/$', views.detail, name='detail'),
     url(r'^feed\.xml$', LatestArticleFeed(), name='feed'),
     # url(r'edit/$', views.edit, name='edit'),

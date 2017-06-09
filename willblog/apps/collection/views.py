@@ -5,10 +5,10 @@ from willblog.apps.category.models import Category
 from willblog.utils.model_get.get_page import get_page
 
 
-def home(request):
+def index(request):
     posts = Collection.objects.order_by("-create_time")
     context = get_page(request, posts, 8)
-    return render(request, 'collection/home.html', context)
+    return render(request, 'collection/index.html', context)
 
 
 def detail(request, pk):

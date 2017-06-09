@@ -32,14 +32,14 @@
                     <div class="tab-pane" id="col-hot">
                         {% for post in popular_collections %}
                             <div class="post">
-                                <h3><a class="post-title" href="{{ post.get_url }}">{{ post.title }}</a></h3>
+                                <h3><a class="post-title" href="{{ post.get_url }}" target="_blank">{{ post.title }}</a></h3>
                                 <ul class="list-inline">
                                     <li class="text-muted small"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{ post.update_time }}</li>
                                     <li class="text-muted small"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ post.author }}</li>
                                     <li class="text-muted small"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>{{ post.category }}</li>
                                 </ul>
                                 <p>{{ post.description }}</p>
-                                <a class="post-meta" href="{{ post.get_url }}">转到原网页阅读全文&raquo;</a>
+                                <a class="post-meta" href="{{ post.get_url }}" target="_blank">转到原网页阅读全文&raquo;</a>
                             </div>
                         {% empty %}
                             <p>暂时没有收集更新。</p>
