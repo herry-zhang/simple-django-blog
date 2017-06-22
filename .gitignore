@@ -1,14 +1,12 @@
 .idea/*
-__pycache__
 *.py[co]
 *.egg-info
 *.pot
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-migrations
-!__init__.py
-whoosh_index
+**/migrations/*
+!**/migrations/__init__.py
 SECRET_KEY
 /conf/*
 /database/*
