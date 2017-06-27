@@ -34,7 +34,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'willblog.urls.urls'
+ROOT_URLCONF = 'willblog.urls'
 
 TEMPLATE_DIR = os.path.join(os.path.dirname(BASE_DIR), 'templates')
 TEMPLATES = [

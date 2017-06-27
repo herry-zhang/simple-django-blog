@@ -7,7 +7,5 @@ ehthumbs.db
 Desktop.ini
 **/migrations/*
 !**/migrations/__init__.py
-SECRET_KEY
-/conf/*
 /database/*
 
