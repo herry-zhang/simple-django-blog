@@ -1,4 +1,4 @@
-from willblog.settings.common import *
+from willblog.settings.bases import *
 
 HAYSTACK_CONNECTIONS = {
 
